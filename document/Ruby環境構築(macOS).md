@@ -24,16 +24,16 @@
 
     - 作成した「index.rb」を実行してみましょう。Rubyファイルは、ターミナルでruby ファイル名で実行できます。
 - 3.Homebrewのインストール
-    - /usr/bin/ruby -e "$(curl -fsSL [https://raw.githubusercontent.com/Homebrew/install/master/install](https://raw.githubusercontent.com/Homebrew/install/master/install))"をターミナルで実行します。途中でPCにログインする時に使用しているパスワードの入力も求められます。この画面ではキーボードを押しても何も表示されませんが、正常に入力されていますので落ち着いてパスワードを入力し、Enterキーを押してください。時間がかかりますが、以下のような画面が表示されればインストール終了です。
+    - /usr/bin/ruby -e "$(curl -fsSL [https://raw.githubusercontent.com/Homebrew/install/master/install]( https://raw.githubusercontent.com/Homebrew/install/master/install ))"をターミナルで実行します。途中でPCにログインする時に使用しているパスワードの入力も求められます。この画面ではキーボードを押しても何も表示されませんが、正常に入力されていますので落ち着いてパスワードを入力し、Enterキーを押してください。時間がかかりますが、以下のような画面が表示されればインストール終了です。
     
-    ![https://s3-ap-northeast-1.amazonaws.com/progate/shared/images/document/5/1524637595997.png](https://s3-ap-northeast-1.amazonaws.com/progate/shared/images/document/5/1524637595997.png)
-    
+    <img width="528" alt="Homebrewのインストール" src="https://user-images.githubusercontent.com/100405379/214741955-4677aced-99e8-4566-86b9-726dd29a1d62.png">
+
     - brew -v を入力して実行します。Homebrew 1.6.2のような文字が表示されれば、Homebrewは正常にインストールできています。
 - 4.rbenvのインストール
     - brew install rbenv ruby-build をターミナルで実行して、rbenvをインストールしましょう。以下のような画像が表示されればインストール完了です。
     
-    ![https://s3-ap-northeast-1.amazonaws.com/progate/shared/images/document/5/1524637814773.png](https://s3-ap-northeast-1.amazonaws.com/progate/shared/images/document/5/1524637814773.png)
-    
+    <img width="528" alt="rbenvのインストール" src="https://user-images.githubusercontent.com/100405379/214742194-07a64011-1ba8-4364-803a-198de7b7812a.png">
+
     - rbenvを使用してRubyをインストールするのですが、その前に実行環境を確認しインストールしたrbenvの設定をしておきましょう。echo $SHELL を実行します。
     - **実行結果が /bin/bash の場合**、以下のコマンドを実行してください。
     
