@@ -20,8 +20,8 @@
     
     - ではこのコードの実行結果を確認してみましょう。Rubyのファイルを実行するにはターミナルを使用します。エディタ上で**「Terminal」**メニュークリックし、**「New Terminal」**をクリックしてください。
     
-    ![https://s3-ap-northeast-1.amazonaws.com/progate/shared/images/document/5/1608259535811.png](https://s3-ap-northeast-1.amazonaws.com/progate/shared/images/document/5/1608259535811.png)
-    
+    <img width="529" alt="New Terminalをクリック" src="https://user-images.githubusercontent.com/100405379/214741726-32eb8f11-d24a-435d-939a-c4c33d4ab7ad.png">
+
     - 作成した「index.rb」を実行してみましょう。Rubyファイルは、ターミナルでruby ファイル名で実行できます。
 - 3.Homebrewのインストール
     - /usr/bin/ruby -e "$(curl -fsSL [https://raw.githubusercontent.com/Homebrew/install/master/install](https://raw.githubusercontent.com/Homebrew/install/master/install))"をターミナルで実行します。途中でPCにログインする時に使用しているパスワードの入力も求められます。この画面ではキーボードを押しても何も表示されませんが、正常に入力されていますので落ち着いてパスワードを入力し、Enterキーを押してください。時間がかかりますが、以下のような画面が表示されればインストール終了です。
