@@ -9,8 +9,8 @@
     - エディタ(VS Code)で先程作成したフォルダ「ruby_lesson」を開き、その中に「**index.rb**
     」ファイルを作成してください。
     
-    ![https://s3-ap-northeast-1.amazonaws.com/progate/shared/images/document/5/1608259497498.png](https://s3-ap-northeast-1.amazonaws.com/progate/shared/images/document/5/1608259497498.png)
-    
+    <img width="529" alt="ruby_lessonを選択" src="https://user-images.githubusercontent.com/100405379/214739398-ac26ff7b-1041-4883-a78f-a0f75778de14.png">
+
     - 作成した「index.rb」にRubyのコードを記述してみましょう。今回は以下に用意したコードをコピーして貼り付けてください。
     
     ```ruby
