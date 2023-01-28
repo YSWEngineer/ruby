@@ -275,3 +275,81 @@
     - 📍まとめ
         - pメソッドは後ろに書いた変数やオブジェクトを表示する。
         - pメソッドは原則、デバッグの道具として使う。
+- 2-7 エラーメッセージを読み解く
+    
+    この節では実際にエラーを起こして、そのときのメッセージの読み方と対応方法を説明します。ここでいろんなエラーに対応する経験を積んでおきましょう。エラーが起こった時の対応はP.40でも説明しているので、あわせて参考にしてください。
+    
+    - エラーメッセージの読み方
+        - エラーが起きてもプログラムを修正して、意図した動きに少しずつ近づけていくのが普通のプログラミングの流れです。
+        
+        ```ruby
+        put "hi"
+        ```
+        
+        ```ruby
+        Traceback (most recent call last):
+        hi.rb:1:in `<main>': undefined method `put' for main:Object
+        	(NoMethodError)
+        Did you mean?  puts
+        								putc
+        ```
+        
+        - hi.rbは実行したファイル名。
+        - 1はプログラムの何行目でエラーが起きたのかを教えてくれます。
+        - in `<main>':は今回、得られる情報が少ないので説明を省略。
+        - undefinde method `put' for main:Objectはエラーメッセージの本文です。undefinde method `put'は「定義されていないメソッド`put'」となり、「putメソッドを実行しようとしたが、定義(用意)されていないので困りました」というRubyからのメッセージです。
+        - NoMethodErrorがエラーの名前で、メソッドが用意されていない時起きるエラーです。
+        - まとめると、「1行目に書かれたputメソッドは定義されていません」という意味になります。
+        - Did you mean?以降はRubyからの提案が書かれています。「Did you mean?」は「もしかして？」という意味です。後ろに書かれたputsとputcがRubyからの提案です。エラーメッセージ全体では以下のようになります。
+        
+        ```ruby
+        「hi.rbの1行目に書かれたputメソッドは定義されていません。もしかして、putsやputcではないですか？」
+        ```
+        
+        - エラーメッセージを読み解くことは、デバッグをする上で基礎となる重要な技術です。
+    - いろいろなエラーメッセージを体験する
+        - 変数の名前を間違えた:変数xに1を代入して、それを表示するプログラムを書くところ、間違えて変数yを表示しようとしたケースです。
+        
+        ```ruby
+        x = 1
+        p y
+        ```
+        
+        ```ruby
+        Traceback (most recent call last):
+        xy.rb:2:in `<main>': undefined local variable or method `y' for
+        	main:Object (NameError)
+        
+        # xy.rbの2行目でエラーが発生しました。undefined local variable or method `y'(定義されていない変数またはメソッド'y'です。NameError(名前エラー)です。
+        ```
+        
+        - 0で割り算した:0で割り算をするとエラーが発生します。
+        
+        ```ruby
+        p 1 / 0
+        ```
+        
+        ```ruby
+        Traceback (most recent call last):
+        				1: from 0div.rb:1:in `<main>'
+        0div.rb:1:in `/': divided by 0 (ZeroDivisionError)
+        
+        # 0dir.rbの1行目でエラーが発生しました。divided by 0(0での割り算)です。ZeroDivisionError(0除算エラー)です。
+        ```
+        
+        - 実行するファイル名が違う:abc.rbをじっこうしようとしてab.rbという存在しないファイルを指定したときのエラーです。
+        
+        ```ruby
+        puts "abc"
+        ```
+        
+        ```ruby
+        Traceback (most recent call last):
+        ruby: No such file or derectory -- ab.rb (LoadError)
+        
+        # No such file or directory(このようなファイルやフォルダはない)です。ab.rbというファイルです。LoadError(読み込みエラー)です。
+        ```
+        
+    - 📍まとめ
+        - エラーメッセージはRubyからプログラマーである私たちへのさまざまなヒント。
+        - エラーメッセージには実行しているファイル名、行番号、エラーの種類と内容、修正候補の情報がある。
