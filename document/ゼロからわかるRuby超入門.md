@@ -730,3 +730,4 @@
         - ブロックはdoからendまでのプログラムのかたまり。
         - n.timesと書くとブロックないの処理をn回繰り返し実行する。</details>
 
+**<details><summary>CHAPTER 4 まとめて扱う - 配列</summary>**
