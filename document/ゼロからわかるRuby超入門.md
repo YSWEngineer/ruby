@@ -2516,3 +2516,15 @@
     - レシーバ
         - **「メソッドを呼び出されるオブジェクト」のことを「レシーバ」と呼びます**。ここでのレシーバは「（変数drinkに代入された)Drinkクラスのオブジェクト」です。
         - 前に出てきた2.even?では、even?メソッドのレシーバは2(整数オブジェクト)です。[”カフェラテ", “モカ", “コーヒー”].sizeのsizeメソッドのレシーバは[”カフェラテ", “モカ", “コーヒー”](配列オブジェクト)です。
+    - COLUMN methodsメソッド
+        - methodsメソッドを使うと、レシーバであるオブジェクトで呼び出せるメソッドを一覧表示することができます。
+
+        ```ruby
+        p 1.methods
+        ```
+
+        ```ruby
+        [:!, :!=, :!~, :%, :&, :*, :**, :+, :+@, :-, :-@, :/, :<, :<<, :<=, :<=>, :==, :===, :=~, :>, :>=, :>>, :[], :^, :__id__, :__send__, :abs, :abs2, :allbits?, :angle, :anybits?, :arg, :between?, :bit_length, :ceil, :chr, :clamp, :class, :clone, :coerce, :conj, :conjugate, :define_singleton_method, :denominator, :digits, :display, :div, :divmod, :downto, :dup, :enum_for, :eql?, :equal?, :even?, :extend, :fdiv, :finite?, :floor, :freeze, :frozen?, :gcd, :gcdlcm, :hash, :i, :imag, :imaginary, :infinite?, :inspect, :instance_eval, :instance_exec, :instance_of?, :instance_variable_defined?, :instance_variable_get, :instance_variable_set, :instance_variables, :integer?, :is_a?, :itself, :kind_of?, :lcm, :magnitude, :method, :methods, :modulo, :negative?, :next, :nil?, :nobits?, :nonzero?, :numerator, :object_id, :odd?, :ord, :phase, :polar, :positive?, :pow, :pred, :private_methods, :protected_methods, :public_method, :public_methods, :public_send, :quo, :rationalize, :real, :real?, :rect, :rectangular, :remainder, :remove_instance_variable, :respond_to?, :round, :send, :singleton_class, :singleton_method, :singleton_method_added, :singleton_methods, :size, :step, :succ, :taint, :tainted?, :tap, :then, :times, :to_c, :to_enum, :to_f, :to_i, :to_int, :to_r, :to_s, :truncate, :trust, :untaint, :untrust, :untrusted?, :upto, :yield_self, :zero?, :|, :~]
+        ```
+
+        - Integerクラスのオブジェクトである1には、たくさんのメソッドが用意されています。**結果は配列で得られる**ので、探しづらい時は`1.methods.sort`と**sort**メソッドを使えばabc順に並び見つけやすくなります。
