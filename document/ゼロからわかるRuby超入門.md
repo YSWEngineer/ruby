@@ -2748,3 +2748,25 @@
         ```
 
         - **name=メソッドを呼び出す時に、メソッド名のnameと=の間に半角スペースを開けて書くことができます。末尾が=で終わるメソッドはこのような書き方が可能です。このように書くと、インスタンス変数へ代入することを感覚的にわかりやすく示すことができます。**
+    - instance_variablesメソッド
+        - オブジェクトに対してinstance_variablesメソッドを呼び出すと、持っているすべてのインスタンス変数を返します。instance_variablesメソッドは、オブジェクトが持っているインスタンス変数の変数名一覧を取得するメソッドです。
+
+        ```ruby
+        class Drink
+          def order(item)
+            @name = item
+          end
+        end
+
+        drink = Drink.new
+        drink.order("カフェラテ")
+        p drink.instance_variables
+        ```
+
+        ```ruby
+        [:@name]
+        ```
+
+        - instance variables:**インスタンス変数**と訳す。
+        - **instance_rariablesはオブジェクトのインスタンス変数名をシンボルの配列として返します。**
+        - **インスタンス変数は代入した時に作られる**ので、drink.order(”カフェラテ")を実行しないとinstance_variablesメソッドが返すインスタンス変数の一覧に@nameが出てきません。
