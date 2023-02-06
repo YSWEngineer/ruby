@@ -2823,3 +2823,48 @@
 
         - ②でDrink.newしてオブジェクトが作られる時にinitializeメソッドが呼ばれ、①でインスタンス変数@nameに”カフェラテ”が代入されます。③でnameメソッドを呼ぶと、戻り値は①で代入した”カフェラテ”になっています。
         - Drinkクラスのオブジェクトを作る時には、自動でインスタンス変数@nameに”カフェラテ”が代入されます。
+    - initializeメソッドへ引数を渡す
+        - 先程のプログラムで、Drinkクラスのオブジェクトを作ると@nameには初期値として"カフェラテ”が代入されるようになりました。では、この初期値を”カフェラテ"意外にも自由に設定するにはどうすればよいでしょうか？これは、initializeメソッドに引数を渡せるようにすることで解決できます。
+        - initializeメソッドに引数を受け取るように定義して、newメソッドを呼び出す時にオブジェクトを渡すと、initializeメソッドで引数として受け取ることができます。
+
+        ```ruby
+        class Drink
+          def initialize(name) # ①
+            @name = name # ②
+          end
+          def name
+            @name
+          end
+        end
+
+        drink = Drink.new("モカ") # ③
+        puts drink.name # ④
+        ```
+
+        ```ruby
+        モカ
+        ```
+
+        - ①でinitializeメソッドに引数を受け取るように定義しています。③でnewメソッドを呼び出し、”モカ"を渡しています。initializeメソッドが呼ばれる時に、引数として変数nameに”モカ"が渡ってきます。②で引数で受け取ったオブジェクトを@nameへ代入します。④で@name変数の中身を表示させると、③で渡した”モカ"になっています。
+        - **newメソッドを呼び出して引数を渡すと、initializeメソッドが呼び出されて引数として届くことが他のメソッドと違う点です**。ここで作ったDrinkクラスを使うと、newメソッドへ渡すオブジェクトを変えることで、いろいろなDrinkオブジェクトを作ることができます。
+
+        ```ruby
+        class Drink
+          def initialize(name)
+            @name = name
+          end
+          def name
+            @name
+          end
+        end
+
+        drink1 = Drink.new("カフェラテ")
+        drink2 = Drink.new("コーヒー")
+        drink3 = Drink.new("モカ")
+
+        puts drink1.name #=> カフェラテ
+        puts drink2.name #=> コーヒー
+        puts drink3.name #=> モカ
+        ```
+
+    - 📍まとめ
