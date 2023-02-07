@@ -3101,3 +3101,38 @@
 
         - いくつかのクラスのancestorsを見ると、**どのクラスの祖先にもObject,Kernel,BasicObjectがあります**。これらのクラスやモジュールによって、オブジェクトとしての基礎となる動作が提供されています。
     - 親子のクラスで同名のメソッドを作った時の動作
+        - 親クラスと同じ名前のメソッドを子クラスで書いた時、どちらが呼び出されるのでしょうか？プログラムを書いて確かめてみましょう。
+        - 先ほど書いたItemクラスとDrinkクラスにfull_nameメソッドを作ります。full_nameメソッドは、Drinkクラスでは@nameと@sizeを合わせた名前を、Itemクラスでは@nameをそのまま返すことにします。
+
+        ```ruby
+        class Item # Itemという名前のクラスを作成せよ
+          def name # 以下を実行するnameという名前のメソッドを作成せよ
+            @name # インスタンス変数@name
+          end # メソッド作成終了
+          def name=(text) # 以下を実行する引数textを持つnameという名前のメソッドを作成せよ
+            @name = text # 変数textをインスタンス変数@nameに紐付けせよ
+          end # メソッド作成終了
+          def full_name # 以下を実行するfull_nameという名前のメソッドを作成せよ
+            @name # インスタンス変数@name
+          end # メソッド作成終了
+        end # クラス作成終了
+
+        class Drink < Item # Itemクラスを継承するDrinkという名前のクラスを作成せよ
+          def size # 以下を実行するsizeという名前のメソッドを作成せよ
+            @size # インスタンス変数@size
+          end # メソッド作成終了
+          def size=(text) # 以下を実行する引数textを持つsizeという名前のメソッドを作成せよ
+            @size = text # 変数textをインスタンス変数@sizeに紐付けせよ
+          end # メソッド作成終了
+          def full_name # 以下を実行するfull_nameという名前のメソッドを作成せよ
+            "#{@name} #{@size}サイズ" # 文字列 "@name @sizeサイズ"
+          end # メソッド作成終了
+        end # クラス作成終了
+
+        drink = Drink.new # Drinkクラスからオブジェクトを作成し、変数drinkに紐付けせよ
+        drink.name = "カフェオレ" # 文字列 "カフェオレ" をdrinkオブジェクトから呼び出したnameメソッドに紐付けせよ
+        drink.size = "tall" # 文字列 "tall" をdrinkオブジェクトから呼び出したsizeメソッドに紐付けせよ
+        puts drink.full_name # drinkオブジェクトから呼び出したfull_nameを表示せよ => カフェオレ tallサイズ
+        ```
+
+        - Drinkクラスのオブジェクトに対してfull_nameメソッドを呼び出すと、Drinkクラスのfull_nameメソッドが呼び出されます。**親子のクラスで同名のメソッドがある時は自分のクラスのメソッドが呼ばれます**(**より正確にいうと、継承関係を親へ親へと辿っていって、最初に該当したメソッドを呼び出します**)。親クラスの同名メソッドは呼ばれず、覆い隠された形になります。
