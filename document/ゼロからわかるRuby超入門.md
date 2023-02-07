@@ -3245,3 +3245,63 @@
         | privateなメソッド | × | ◯ |
         | publicなメソッド | ◯ | ◯ |
         - 「クラス定義の外からレシーバを指定した形ではメソッドを呼ばせないようにする」という機能は、新しい機能を提供しているわけでもなく、できることを減らしているだけの、無意味なことにも思えるかもしれません。しかし、先程のプログラムではmakanaiメソッドを`private`にすることで、**「このクラスのオブジェクトでは、makanaiメソッドを使うのではなくて、staffメソッドを使ってくださいね」という設計上の意図を他のプログラマーへ伝えることができています。プログラムを通じて、作ったクラスとメソッドをそのオブジェクトらしく正しく使ってもらう方法を伝えている、大切な機能です。**
+    - privateとpublic
+        - `private`を使うと、**それ以降に定義したメソッドがprivateなメソッドになること**を説明しました。復習を兼ねて整理してみましょう。
+
+        ```ruby
+        class Foo
+          def a # publicなメソッド
+          end
+          def b # publicなメソッド
+          end
+
+          private
+
+          def c # privateなメソッド
+          end
+          def d # privateなメソッド
+          end
+        end
+
+        # クラス内にprivateを書かずに定義したメソッドはpublicなメソッドになり、privateより後ろで定義したメソッドはprivateなメソッドになります。
+        ```
+
+        - この例では、aとbのメソッドはpublicなメソッド、cとdはprivateなメソッドになります。**クラス内にprivateを書かずに定義したメソッドはpublicなメソッド**になり、**privateより後ろで定義したメソッドはprivateなメソッド**になります。
+        - privateを書いた後でpublicなメソッドを再び書きたい時のために、`public`も用意されています。**publicを書くと、以降に定義するメソッドはpublicなメソッドになります。**
+
+        ```ruby
+        class Foo
+          def a # public
+          end
+
+          def b # public
+          end
+
+          private
+
+          def c # private
+          end
+
+          public
+
+          def d # public
+          end
+        end
+        ```
+
+        - a、b、dのメソッドがpublic、cのメソッドがprivateになります。privateとpublicは何度でも書くことができますが、**最初にpublicなメソッドをまとめて書き、その後にprivateなメソッドをまとめて書くことが一般的です。そのクラスの使い方を知る時にはpublicなメソッドを読む必要があるので、先頭に書いてあった方が都合が良いためです。**
+        - また、privateをメソッド定義する`def`の前に書くことで、そのメソッドだけをprivateなメソッドにすることもできます。**次のプログラムではaメソッドだけをprivateなメソッドにしています。**
+
+        ```ruby
+        class Foo
+          private def a # private
+          end
+
+          def b # public
+          end
+        end
+
+        # privateをdefの前に書くことで、そのメソッドだけをprivateなメソッドにすることができます。
+        ```
+
+    - privateなクラスメソッドを定義する
