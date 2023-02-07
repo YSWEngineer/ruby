@@ -3083,3 +3083,21 @@
     - COLUMN 親クラスと子クラスのどちらにメソッドを加えるか
         - 先程のプログラムへ加えて、価格を設定、取得するメソッドを加える場合を考えてみましょう。これは商品全般に共通するものです。親クラスであるItemクラスに書くことで、それを継承したDrinkクラスでも利用でき、重複せずに書くことができます。また、Itemクラスを継承した別のクラス(例えばFood)を作る時にも、Itemクラスに書かれたものを共同利用できます。
         - 一方でホットかアイスかを設定、取得するメソッドは、ドリンクに固有なもので、商品には不要そうです。このケースでは、Drinkクラスにメソッドを追加するのがよいでしょう。
+    - Rubyが用意しているクラスたちの継承関係
+        - 整数クラスIntegerや少数クラスFloatは、数値クラスNumericを継承して作られています。例えば、0可動化を判断するzero?メソッドはIntegerクラスやFloatクラスの親クラスであるNumericに定義されています。子クラスは親クラスのメソッドを呼び出すことができるので、IntegerクラスもFloatクラスもzero?メソッドを呼び出すことができます。
+        - あるクラスの継承関係を見るにはancestorsメソッドを使います。**ancestorsメソッドは、そのクラスの継承関係(親クラス群)を表示するメソッドです**。クラスの家系図のようなものですね。親クラスのそのまた親クラス、というように、継承関係上の祖先をたどることができます。**より正確には、親クラスとincludeしているモジュールを表示します**。
+        - ancestor:祖先、先祖
+
+        ```ruby
+        p Integer.ancestors
+        # => [Integer, Numeric, Comparable, Object, Kernel, BasicObject]
+
+        p Array.ancestors
+        # => [Array, Enumerable, Object, Kernel, BasicObject]
+
+        p Class.ancestors
+        # => [Class, Module, Object, Kernel, BasicObject]
+        ```
+
+        - いくつかのクラスのancestorsを見ると、**どのクラスの祖先にもObject,Kernel,BasicObjectがあります**。これらのクラスやモジュールによって、オブジェクトとしての基礎となる動作が提供されています。
+    - 親子のクラスで同名のメソッドを作った時の動作
