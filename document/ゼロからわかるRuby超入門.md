@@ -3136,3 +3136,46 @@
         ```
 
         - Drinkクラスのオブジェクトに対してfull_nameメソッドを呼び出すと、Drinkクラスのfull_nameメソッドが呼び出されます。**親子のクラスで同名のメソッドがある時は自分のクラスのメソッドが呼ばれます**(**より正確にいうと、継承関係を親へ親へと辿っていって、最初に該当したメソッドを呼び出します**)。親クラスの同名メソッドは呼ばれず、覆い隠された形になります。
+    - 親クラスのメソッドを呼び出す -super
+        - 先程のitem4.rbでは、drinkクラスのオブジェクトでfull_nameメソッドを呼び出すと、Drinkクラスのメソッドが呼び出されました。**親クラスであるItemクラスのfull_nameメソッドは、子クラスであるDrinkクラスの同名メソッドで覆い隠されて呼び出されなくなりました**。これは上書きされたわけではなくて、呼び出しされなくなっているだけです。**Drinkクラスで親クラスItemのfull_nameメソッドを呼び出すこともできます**。
+        - メソッド中で`super`と書くことで、**親クラスの同名メソッドを呼び出すことができます**。次のプログラムを見てみましょう。プログラムを見てみましょう。
+
+        ```ruby
+        class Item
+          def name
+            @name
+          end
+          def name=(text)
+            @name = text
+          end
+          def full_name # ④
+            @name
+          end
+        end
+
+        class Drink < Item
+          def size
+            @size
+          end
+          def size=(text)
+            @size
+          end
+          def full_name # ②
+            super # ③
+          end
+        end
+
+        drink = Drink.new
+        drink.name = "カフェオレ"
+        drink.size = "tall"
+        puts drink.full_name #=> カフェオレ ①
+        ```
+
+        - このプログラムは`super`を使って、**Drinkクラスのfull_nameメソッドで親クラスItemのfull_nameメソッドを呼び出しています**。②で定義されたDrinkクラスのfull_nameメソッドを①で呼び出します。③で`super`を実行すると、親クラスの同名メソッドである④が呼び出されます。`super`は**親クラスの同名メソッドを呼び出して、戻り値を返します**。親クラスItemのfull_nameメソッドは@nameを返すので、①で表示されるのは"カフェオレ”となります。
+        - また、superが戻り値を返すことを利用して、Drinkクラスのfull_nameメソッドの③の行を次のように書くと、1つ前のitem4.rbと同じ動作のプログラムになります。
+
+        ```ruby
+        "#{super} #{@size}サイズ" # ③の行を書き換えて、superを使って、item4.rbと同じ動作にする。
+        ```
+
+    - 📍まとめ
