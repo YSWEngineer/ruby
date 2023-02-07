@@ -2995,4 +2995,89 @@
     
     カフェのメニューでは、扱っている商品を、ドリンクやフードなど種類別に分類して掲載しています。さらにドリンクの中ではコーヒー、紅茶、スムージーのように階層を作って分類されています。このような「種類別に階層を作って分類する」ことを、プログラムで表現する時には「継承」という仕組みが利用できます。ここでは継承を使ってクラスを作る方法を見ていきましょう。
 
+    - 継承
+        - 「種類別に階層を作って分類する」ことを、プログラムで表現する時には「継承」という仕組みが利用できます。
+        - 題材として、カフェでの商品およびドリンクを、継承を利用して扱うプログラムを見てみましょう。実際のプログラム例を出して説明していきます。
+        - 先ず、ケーキやマフィンといった商品を扱うItemクラスを作ります。Itemクラスは名前を設定して使うことができます。
+
+        ```ruby
+        class Item
+          def name
+            @name
+          end
+          def name=(text)
+            @name = text
+          end
+        end
+        ```
+
+        - そして、ドリンクを扱うDrinkクラスを作ります。ドリンクでは名前に加えて、サイズの情報も持ちます。
+
+        ```ruby
+        class Drink
+          def name
+            @name
+          end
+          def name=(text)
+            @name = text
+          end
+          def size
+            @size
+          end
+          def size=(text)
+            @size = text
+          end
+        end
+        ```
     
+        - **このItemクラスとDrinkクラスにおいて、nameメソッドとname=メソッドの内容は同じです**。また、**DrinkはItemの一種類という関係があります**。このような時には、「**継承**」の仕組みを使うと次のように書けます。
+
+        ```ruby
+        class Item
+          def name
+            @name
+          end
+          def name=(text)
+            @name = text
+          end
+        end
+
+        class Drink < Item # ①
+          def size
+            @size
+          end
+          def size=(text)
+            @size = text
+          end
+        end
+
+        item = Item.new
+        item.name = "マフィン"
+
+        drink = Drink.new
+        drink.name = "カフェオレ" # ②
+        drink.size = "tall"
+        puts "#{drink.name} #{drink.size}サイズ"
+        ```
+
+        ```ruby
+        カフェオレ tallサイズ
+        ```
+    
+        - ①で`class Drink < Item`のようにクラスを定義すると、**Itemクラスを継承したDrinkクラスを作ることができます**。この**DrinkクラスはItemクラスの全てのメソッドを受け継ぎます**。つまり、**ここではItemクラスのnameメソッドとname=メソッドをDrinkクラスでも使うことができます**。②でDrinkクラスのオブジェクトへ呼び出しているname=メソッドは、親にあたるItemクラスのname=メソッドを使っています。
+        - このようなItemクラスを使ったDrinkクラスの定義を「**Itemクラスを継承してDrinkクラスを定義する**」と言い、「**DrinkクラスはItemクラスを継承したクラス**」と言います。そして、**継承元であるItemクラスはスーパークラスと呼び**、**継承先であるDrinkクラスはサブクラスと呼びます**。継承先のクラスは、スーパークラスの全てのメソッドを受け継ぎます。また、**スーパークラスが親**、**サブクラスが子**と考えることもできるので、本書では**親クラス**、**子クラス**という呼び方もします。
+
+        ```ruby
+        ◯継承
+        class クラス名 < スーパークラス名
+        end
+        ```
+
+        | 継承元/継承先 | 親クラス、スーパークラス | 子クラス、サブクラス |
+        | --- | --- | --- |
+        | クラス名 | Itemクラス | Drinkクラス |
+        | 定義 | class Item | class Drink < Item |
+        | 使えるメソッド | name,name= | name,name=,size,size= |
+        | 注釈 |  | 子クラスは、親クラスのメソッドを使うことができる |
+    
+    - COLUMN 親クラスと子クラスのどちらにメソッドを加えるか
