@@ -3476,3 +3476,49 @@
         ```
 
         - このようにクラスでincludeメソッドを使うと、引数で指定したモジュールのメソッドを、あたかもクラス自身のインスタンスメソッドとして使えるようになります。1つのクラスの中でincludeメソッドは何度でも呼べるので、複数のモジュールを同じクラスでインクルードして、それらのメソッドを利用することもできます。
+    - モジュールは複数のクラスで共同利用できる
+        - モジュールの優れたところは、複数のクラスで使えるところです。複数のクラスでモジュールをincludeすることで、そのモジュールのメソッドを共同利用できます。
+
+        ```ruby
+        module WhippedCream
+          def whipped_cream
+            @name += "ホイップクリーム"
+          end
+        end
+
+        class Drink
+          include WhippedCream
+          def initialize(name)
+            @name = name
+          end
+          def name
+            @name
+          end
+        end
+
+        class Cake
+          include WhippedCream
+          def initialize(name)
+            @name = name
+          end
+          def name
+            @name
+          end
+        end
+
+        drink = Drink.new("モカ")
+        drink.whipped_cream
+        puts drink.name #=> モカホイップクリーム
+
+        cake = Cake.new("チョコレートケーキ")
+        cake.whipped_cream
+        puts cake.name #=> チョコレートケーキホイップクリーム
+        ```
+
+        ```ruby
+        モカホイップクリーム
+        チョコレートケーキホイップクリーム
+        ```
+
+        - Drinkクラスの他に、ケーキを扱うCakeクラスを作りました。そして、Drinkクラスと同様に、CakeクラスでもWhippedCreamモジュールをインクルードします。WhippedCreamモジュールをインクルードすると、Drinkクラスだけでなく、Cakeクラスのオブジェクトでもwhipped_creamメソッドを呼び出せていますね。
+        - このようにモジュールを使うと、クラスの継承とは違った形でメソッドを共同利用する仕組みを提供できます。前の章で説明したように、**継承を使うときには「(子クラスである)Drinkクラスは(親クラスである)Itemクラスの一種類である」という関係を持っていないと、違和感を感じる場合が多いです。モジュールではそのようなことは気にしなくてよいので、継承が適当でないなと思った場面でも選択肢として検討してみてください**。
