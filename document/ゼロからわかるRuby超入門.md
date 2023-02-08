@@ -3392,3 +3392,87 @@
 
         - インスタンスメソッドwhipped_creamを呼ぶとインスタンス変数@nameの後ろに"ホイップクリーム”を追加します。module2.rbを実行しても何も表示されないのは、定義しただけではメソッドは実行されないからです。これはクラスの時と同じですね。
         - これで3つの手順のうちの2つが完了しました。次は最後の手順です。いよいよ動かすことができるようになります。
+    - モジュールのメソッドをクラスで使う - include
+        - できあがったWhippedCreamモジュールを早速使いたいところですが、その前にモジュールを使う側であるDrinkクラスを作っておきましょう。P.201のinitialize3.rbで書いたDrinkクラスを使うことにします。Drinkクラスは@nameを持っています。Drink.newでオブジェクトが作られたときに呼ばれるinitializeメソッドで、引数で渡した”モカ”が@nameに代入されます。
+
+        ```ruby
+        class Drink
+          def initialize(name)
+            @name = name
+          end
+          def name
+            @name
+          end
+        end
+
+        drink = Drink.new("モカ")
+        puts drink.name
+        ```
+
+        ```ruby
+        モカ
+        ```
+
+        - このDrinkクラスにて、WhippedCreamモジュールのwhipped_creamメソッドを使えるようにし、@nameの末尾に"ホイップクリーム”を加えるのがゴールです。
+        - モジュールのメソッドをクラスで使えるようにするには、includeメソッドでモジュールを指定して、クラスにモジュールをインクルードします。
+        - includeメソッド
+
+        ```ruby
+        class クラス名
+            include モジュール名
+        end
+        ```
+
+        ```ruby
+        module WhippedCream
+          def whipped_cream
+            @name  += "ホイップクリーム" # ①
+          end
+        end
+
+        class Drink
+          include WhippedCream # ②
+          def initialize(name)
+            @name = name # ③
+          end
+          def name
+            @name # ④
+          end
+        end
+
+        drink = Drink.new("モカ") # ⑤
+        drink.whipped_cream # ⑥
+        puts drink.name # ⑦
+        ```
+
+        ```ruby
+        モカホイップクリーム
+        ```
+
+        - ②のinclude WhippedCreamを実行すると、Drinkクラスのオブジェクトは、モジュールWhippedCreamのメソッド、ここではwhipped_creamが利用可能になります。⑥で実行しているdrink.whipped_creamは、WhippedCreamモジュールに定義したメソッドです。⑦でdrinkオブジェクトの@nameを表示すると、その前の行⑥でwhipped_creamメソッドが実行されているので、@nameは末尾にトッピングが追加された"モカホイップクリーム”になっています。
+        - このプログラムではDrinkクラスのオブジェクトが持っている@nameが3箇所で使われています。@nameの動きに沿ってプログラムの流れをもう1回追いかけてみましょう。⑤のDrink.newメソッドの引数に"モカ”が渡され、③で@nameに代入されます。ここで作られたDrinkクラスのオブジェクト(@nameの持ち主です)は変数drinkに代入されます。次の行⑥でdrinkオブジェクトのwhipped_creamメソッドが呼び出され、①で@nameの末尾に"ホイップクリーム”が足されます。⑦で@nameを取得すると、"モカホイップクリーム”となっています。
+        - また、先程のプログラムは、モジュールを使わずに書いた次のプログラムと同じ動作になります。
+
+        ```ruby
+        class Drink
+          def whipped_cream
+            @name += "ホイップクリーム"
+          end
+          def initialize(name)
+            @name = name
+          end
+          def name
+            @name
+          end
+        end
+
+        drink = Drink.new("モカ")
+        drink.whipped_cream
+        puts drink.name
+        ```
+
+        ```ruby
+        モカホイップクリーム
+        ```
+
+        - このようにクラスでincludeメソッドを使うと、引数で指定したモジュールのメソッドを、あたかもクラス自身のインスタンスメソッドとして使えるようになります。1つのクラスの中でincludeメソッドは何度でも呼べるので、複数のモジュールを同じクラスでインクルードして、それらのメソッドを利用することもできます。
