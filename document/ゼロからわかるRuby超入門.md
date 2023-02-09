@@ -3654,4 +3654,33 @@
     
     ここまででクラスやモジュールを部品として作る様々な方法を学んできました。これらの部品を整理して扱うために、クラスやモジュールを別のファイルに定義しておいて、読み込む仕組みが用意されています。この仕組みを使うと、整理して書けるだけでなく、複数のプログラム間で部品を共同利用することができるようになります。
     
-    
+    - 別ファイルのクラスやモジュールを読み込む
+        - ここまでは1つのプログラムを1つのファイルに全て書いていましたが、プログラムの一部を別のファイルから読み込む仕組みも用意されています。
+        - 題材として、DrinkクラスへWhippedCreamモジュールをインクルードしたプログラムを、WhippedCreamモジュールを別ファイルに保存して読み込むように書き換えてみましょう。プログラムとして、module4.rbを使います。module4.rbから、WhippedCreamモジュールを別のファイルへ移してみましょう。
+        - 次の2つのプログラムを書いて、同じフォルダに保存してください。rubyコマンドで実行するのはdrink1.rbです。
+
+        ```ruby
+        require_relative "whipped_cream" # ①
+        class Drink
+          include WhippedCream
+          def name
+            @name
+          end
+          def initialize
+            @name = "モカ"
+          end
+        end
+
+        mocha = Drink.new
+        mocha.whipped_cream
+        puts mocha.name
+        ```
+
+        ```ruby
+        モカホイップクリーム
+        ```
+
+        - WhippedCreamモジュールを別ファイルwhipped_cream.rbで定義しました。それを読み込んでdrink1.rbを実行します。結果は書き換える前と同じ「モカホイップクリーム」になっていますね。
+        - whipped_cream.rbファイルを読み込んでいるのが①の行です。require_relativeメソッドの引数に文字列で、ファイル名(.rbは省略可能)を書きます。これでrequire_relativeメソッドを書いたプログラムファイル(ここではdrink1.rb)から、読み込んだファイル(ここではwhipped_cream.rb)で書かれた定義(ここではWhippedCreamモジュール)を使うことができます。rubyコマンドで実行するのは読み込んだ側であるdrink1.rbだけです。
+        - モジュール定義だけでなく、クラス定義も別ファイルに書くことができます。別のファイルに書いておくと、整理できるだけでなく、複数のプログラムで読み込んで強要することができるメリットもあります。
+        - 例えば、今回書いたwhipped_cream.rbをこれから書く新しいプログラムchocolate_cake.rbから読み込んで、そこでChocolateCakeクラスにWhippedCreamモジュールを使うこともできるわけです。
