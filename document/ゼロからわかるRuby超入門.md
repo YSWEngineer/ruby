@@ -3684,3 +3684,8 @@
         - whipped_cream.rbファイルを読み込んでいるのが①の行です。require_relativeメソッドの引数に文字列で、ファイル名(.rbは省略可能)を書きます。これでrequire_relativeメソッドを書いたプログラムファイル(ここではdrink1.rb)から、読み込んだファイル(ここではwhipped_cream.rb)で書かれた定義(ここではWhippedCreamモジュール)を使うことができます。rubyコマンドで実行するのは読み込んだ側であるdrink1.rbだけです。
         - モジュール定義だけでなく、クラス定義も別ファイルに書くことができます。別のファイルに書いておくと、整理できるだけでなく、複数のプログラムで読み込んで強要することができるメリットもあります。
         - 例えば、今回書いたwhipped_cream.rbをこれから書く新しいプログラムchocolate_cake.rbから読み込んで、そこでChocolateCakeクラスにWhippedCreamモジュールを使うこともできるわけです。
+    - COLUMN require_relativeとrequire
+        - 別のファイルを読み込む時に、require_relativeメソッドの代わりにrequireメソッドを使うこともできます。
+        - 現在のフォルダにあるファイルであれば、先程の`require_relative “whipped_cream”`をrequireメソッドを使って書くと`require “./whipped_cream”`と書けます。
+        - 別のファイルを読み込む時は、require_relativeメソッドを使うのがお勧めです。
+        - requireメソッドは別の使い方もあります。
