@@ -3701,3 +3701,5 @@
         ```
 
         - require_relativeメソッドを使うと、別ファイルに定義されたクラスやモジュールを読み込んで使うことができる。</details>
+
+**<details><summary>CHAPTER 10 Webアプリをつくる</summary>**
