@@ -3689,3 +3689,6 @@
         - 現在のフォルダにあるファイルであれば、先程の`require_relative “whipped_cream”`をrequireメソッドを使って書くと`require “./whipped_cream”`と書けます。
         - 別のファイルを読み込む時は、require_relativeメソッドを使うのがお勧めです。
         - requireメソッドは別の使い方もあります。
+    - includeとrequire_relativeの違い
+        - includeとrequire_relativeはどちらも「読み込む」という機能で似ているように感じますが、違う機能です。
+        - includeはモジュール名を渡して、そのモジュールに書かれたメソッドをクラスから利用できるようにするメソッドです。require_relativeは、ファイル名を渡してそのファイルに定義されたクラスやモジュールを使えるようにするメソッドです。セットで使うことも多いこの2つですが、それぞれ機能が違います。
