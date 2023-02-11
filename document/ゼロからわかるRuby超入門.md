@@ -3711,3 +3711,41 @@
     - Gemとは
         - いろいろなプログラムで共有して使うプロフラムのことをライブラリと呼びます。Rubyの世界では大きく分けて3つのライブラリがあります。1つ目は何も準備せずに使える「組み込みライブラリ」、例えば、これまでによく使ってきたInteger、String、Array、Hashといったクラスたちです。2つ目は使う前にrequireメソッドを実行して準備する「標準添付ライブラリ」、例えば、JSONといったクラスです。3つ目は使う前にインストールが必要なGemと呼ばれるライブラリです。ここではGemについて説明していきます。
         - Gemは **[rubygems.org](http://rubygems.org)** というサイトで利用可能な形で公開されていて、10万を越えるGemが登録されています。それぞれのGemを使うことで、提供している機能を自分のプログラムで使うことができます。
+    - Gemの使い方
+    - ここでは例として、awesome_printというGemを使ってみましょう。このGemは、pメソッドをよりみやすい形で表示するapメソッドを提供します。**Gemを使うためには、先ずコマンドプロンプトでgem installコマンドに続いてGem名を指定してインストールします。**installは頭文字だけにしてgem iでも実行できます。awesome_printの場合は、`gem install awesome_print`となります。また、このコマンドの実行時にはネットワークへ接続が必要で、少し時間がかかります。
+    - Gemのインストール
+    
+        ```ruby
+        gem install Gem名
+        ```
+
+        ```ruby
+        % gem install awesome_print
+        Fetching awesome_print-1.9.2.gem
+        Successfully installed awesome_print-1.9.2
+        Parsing documentation for awesome_print-1.9.2
+        Installing ri documentation for awesome_print-1.9.2
+        Done installing documentation for awesome_print after 0 seconds
+        1 gem installed
+        ```
+
+        - コマンドを実行すると、このような表示が出てGemがインストールされます。Gem名の後ろにハイフンで続く数字はバージョン番号です。実行した時の最新バージョンのGemがインストールされるため、バージョン番号は異なることもあります。
+        - gem installコマンドでインストールするのは、1回だけで大丈夫です。プログラムを実行するごとにインストールする必要なありません(そして過去にインストール済みのGemインストールしても問題ないです)。インストールされたGemとそのバージョンは、コマンドプロンプトでgem listコマンドを実行すると確認することができます。
+        - 尚、MacなどでERROR:    While executing gem ... (Gem::FilePermissionError) You don’体調は如何でしょうか？ have write permissions for ...というエラーとなることがあります。そのときは`sudo gem install awesome_print`と先頭に`sudo`を加えて実行してください。
+        - インストールしたGemは通常、プログラムの中で、requireメソッドを実行することで利用可能になります。awesome_printの場合はrequire “awesome_print”を実行すると、それ以降でapメソッドを利用できるようになります。
+    
+    ```ruby
+    require "awesome_print" # ① awesome_print gemを読み込み。
+    ap ["カフェラテ", "モカ", "コーヒー"] # ② 
+    ```
+    
+    ```ruby
+    [
+        [0] "カフェラテ",
+        [1] "モカ",
+        [2] "コーヒー"
+    ]
+    ```
+    
+    - ①の`require “awesome_print”`でawesome_print Gemを読み込みます。これは標準添付ライブラリの時と同様です。②でapメソッドを呼び出しています。**apメソッドの使い方はpメソッドと同様です。引数に渡したオブジェクトを見やすい形で表示します。**配列が要素ごとに見やすく表示されていますね。
+    - Gemの使い方はGemごとに異なるため、Gem名で検索してドキュメントを読んでみてください。GitHubのページが用意されていることが多いです。
