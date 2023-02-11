@@ -3838,3 +3838,11 @@
         ```
 
     - 📍まとめ
+        - Rubyでは、組み込みライブラリ、標準添付ライブラリ、Gemの三種類のライブラリがある。
+        - `gem install Gem名`でGemをインストールできる。
+        - 複数のGemを簡単に管理するBundlerが提供されている。
+        - BundlerはGemfileという名のファイルに使うGem名を記述する。
+        - `bundle install`コマンドを実行するとGemfileに書かれたGemがインストールされ、Gemfile.lockができる。
+        - Gemfile.lockにはインストールされたGemとそのバージョンなどが書かれる。
+        - `bundle update`コマンドを使うと利用中のGemの新しいバージョンがあればインストールされる。
+        - `bundle exec`コマンドを使うとGemfileやGemfile.lockに書かれたGemバージョンでRubyのプログラムを実行する。
