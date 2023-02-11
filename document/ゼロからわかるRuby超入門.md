@@ -3734,18 +3734,20 @@
         - 尚、MacなどでERROR:    While executing gem ... (Gem::FilePermissionError) You don’体調は如何でしょうか？ have write permissions for ...というエラーとなることがあります。そのときは`sudo gem install awesome_print`と先頭に`sudo`を加えて実行してください。
         - インストールしたGemは通常、プログラムの中で、requireメソッドを実行することで利用可能になります。awesome_printの場合はrequire “awesome_print”を実行すると、それ以降でapメソッドを利用できるようになります。
     
-    ```ruby
-    require "awesome_print" # ① awesome_print gemを読み込み。
-    ap ["カフェラテ", "モカ", "コーヒー"] # ② 
-    ```
-    
-    ```ruby
-    [
-        [0] "カフェラテ",
-        [1] "モカ",
-        [2] "コーヒー"
-    ]
-    ```
-    
-    - ①の`require “awesome_print”`でawesome_print Gemを読み込みます。これは標準添付ライブラリの時と同様です。②でapメソッドを呼び出しています。**apメソッドの使い方はpメソッドと同様です。引数に渡したオブジェクトを見やすい形で表示します。**配列が要素ごとに見やすく表示されていますね。
-    - Gemの使い方はGemごとに異なるため、Gem名で検索してドキュメントを読んでみてください。GitHubのページが用意されていることが多いです。
+        ```ruby
+        require "awesome_print" # ① awesome_print gemを読み込み。
+        ap ["カフェラテ", "モカ", "コーヒー"] # ② 
+        ```
+
+        ```ruby
+        [
+            [0] "カフェラテ",
+            [1] "モカ",
+            [2] "コーヒー"
+        ]
+        ```
+
+        - ①の`require “awesome_print”`でawesome_print Gemを読み込みます。これは標準添付ライブラリの時と同様です。②でapメソッドを呼び出しています。**apメソッドの使い方はpメソッドと同様です。引数に渡したオブジェクトを見やすい形で表示します。**配列が要素ごとに見やすく表示されていますね。
+        - Gemの使い方はGemごとに異なるため、Gem名で検索してドキュメントを読んでみてください。GitHubのページが用意されていることが多いです。
+    - COLUMN たくさんのGemがある
+        - さまざまなGemが公開されています。例えば、有名なRailsもWebアプリを簡単に作るためのライブラリ群で、複数のGemに整理されて公開されています。ほか、軽量なWebアプリをつくるためのライブラリSinatraや表示を見やすくしたirbの後発プログラムであるpryなど、たくさんのGemが公開されています。
