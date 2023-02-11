@@ -3795,4 +3795,27 @@
         gem "pry" # テキストの通りにこの行を追加。
         ```
 
-    
+    - bundle installコマンドでインストールする
+        - 手順の2番目はbundle installコマンドを実行することです。Gemfileと同じフォルダへ移動してbundle installコマンドを実行します。または、省略してbundle i、またはbundleとも書けます。このコマンドの実行時にはネットワークへ接続が必要なため、少し時間が掛かります。
+
+        ```ruby
+        # desktop/rubybookファイルからbundle installコマンドを実行してインストールを行いました。
+        yoshiwo@Yoshiwos-MacBook-Pro rubybook % bundle install
+        Fetching gem metadata from https://rubygems.org/.......
+        Resolving dependencies...
+        Using bundler 2.3.3
+        Fetching method_source 1.0.0
+        Fetching coderay 1.1.3
+        Installing method_source 1.0.0
+        Installing coderay 1.1.3
+        Fetching pry 0.14.1
+        Installing pry 0.14.1
+        Bundle complete! 1 Gemfile dependency, 4 gems now installed.
+        Use `bundle info [gemname]` to see where a bundled gem is installed.
+        ```
+
+        - バージョン番号などが異なることがあります。また、インストール済みのGemがあると表示が変わりますが、問題はありません。
+        - これでpry Gemがインストールされ、使う準備ができました。gem install pryを実行したことと同じことになります。コマンドプロンプトからpryコマンドを実行すると、irbのような表示がされ、入力したRubyのプログラムを1行ずつ実行することができます。pryを終了させるには、irbと同じく、`exit`と打ちます。
+        - bundle installコマンドを実行すると、Gemfile.lockというファイルが作成されます。Gemfile.lockには、使われているGem名とそのバージョン情報などが記録されています。Gemfile.lockは自動で作られるものなので、編集する必要はありません。GemfileとGemfile.lockの2つのファイルはセットで使われるので、プログラムのファイル一式をバックアップする時などには、GemfileとGemfile.lockの両方を保管してください。
+        - 2つのファイルを例え話で説明すると、GemfileはGemをインストールするための発注書です。**Gemfileに使いたいGem名を書いて、bundle installコマンドを実行すると、発注書に従ってGemがインストールされます。**Gemfile.lockは納品書です。**発注書に基づいて実際にインストールされたGemとそのバージョン情報などが書かれています。**
+        - 公開されているRubyで書かれたプログラムにGemfileが添えられていた時にはbundle installコマンドを実行してからプログラムを実行してみましょう。多くの場合、ドキュメントでその旨が書かれていますが、慣れている人にとっては当たり前の動作でもあるので、ドキュメントで省略されている場合も時々あります。
