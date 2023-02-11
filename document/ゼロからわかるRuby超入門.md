@@ -3756,3 +3756,43 @@
         - BundlerでGem群をインストールするには2つの手順を踏みます。Gemfileの作成、bundle installコマンドの実行です。順に見ていきましょう。
     - NOTE
         - Bundlerはよく使われるため、Ruby 2.6.0から標準で添付されRubyと一緒にインストールされるようになりました。すでにインストールされているかを確認するには、コマンドプロンプトで`bundle -v`コマンドを実行して、バージョンが表示されれば、インストール済みです。またはBundlerもGemとして公開されているため、`gem list`コマンドでも確認できます。gem listコマンドの結果の中にbundlerが入っていればインストール済みです。もしもBundlerがインストールされていない時は、`gem install bundler`コマンドでインストールすることができます。
+    - GemfileにインストールするGemを書く
+        - 最初に、使用するGem群を書いたGemfileという名前のファイルを作成します。GemfileはBundlerを使ってインストールするGemのリストを書くファイルです。Gemfileは`bundle init`コマンドで雛形を作成し、そのファイルに使いたいGem名を追記します。仕組みの名前はBundlerですが、コマンド名は`bundle`と最後にrがつかない点に注意です。
+
+        ```ruby
+        yoshiwo@Yoshiwos-MacBook-Pro rubybook % bundle init
+        Writing new Gemfile to /Users/yoshiwo/Desktop/rubybook/Gemfile
+
+        # rubybookファイルに進んだ状態でbundle initコマンドを実行すること。
+        ```
+
+        - `/Users/yoshiwo/Desktop/rubybook/Gemfile`の部分はGemfileができた場所で、コマンドを実行したフォルダになります。できあがったGemfileをエディターで開いてみましょう。
+        - Gemfile
+
+        ```ruby
+        # frozen_string_literal: true
+
+        source "https://rubygems.org"
+
+        # gem "rails"
+
+        # テキスト3行目のgit_sourceがなかったので次で追加しました。
+        ```
+
+        ※テキストのGemfileの内容が一部ない。
+
+        - 例として、pryというGemをGemfileに追記してみましょう。pryはirbの後発プログラムで、表示が見やすく、多くの機能を持っています。Gemfileの最後の行に使いたいGemを追記します。# gem “rails”は例として記載されているコメントなので、削除しても大丈夫です。
+        - 以下のように編集します。
+        - Gemfile
+
+        ```ruby
+        # frozen_string_literal: true
+
+        source "https://rubygems.org"
+
+        git_source(:github) {|repo_name| "https://github.com/#{repo_name}" } # bundle initでこの行が元からなかったので追加。
+
+        gem "pry" # テキストの通りにこの行を追加。
+        ```
+
+    
