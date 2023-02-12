@@ -3850,3 +3850,64 @@
     クックパッドのような、ブラウザで使うWebアプリは私たちの生活で使う場面も多いでしょう。RubyにはWebアプリをかんたんに作ることができるGemであるSinatraがあります。これを使ってかんたんなWebアプリを作ってみましょう。
     - Webアプリとは
         - Webアプリとは「ブラウザから利用できるアプリ」のことです。HTML(ブラウザで表示するための言語)とCSS(ブラウザでの表示を装飾するための言語)に加えて、Rubyのプログラムを実行することで、状況に応じて表示を変えるWebページを作ることが可能になります。
+    - sinatra Gemを使ってWebアプリを作る
+        - 実際にWebアプリを作って動かしてみましょう。Webアプリを簡単に作ることができるSinatraというライブラリ(プログラミングに使用する様々なモジュールを収めたファイルのこと)があるので、これを利用します。手順としては前の節のGemの使い方に沿って行います。Gemをインストールし、requireメソッドで読み込み、Sinatraが提供しているメソッドを呼び出します。
+        - 最初にsinatra Gemと、併せて利用するwebrick Gemをインストールします。
+
+        ```ruby
+        yoshiwo@Yoshiwos-MacBook-Pro rubybook % gem install sinatra webrick
+        Fetching tilt-2.0.10.gem
+        Fetching sinatra-2.2.0.gem
+        Fetching rack-2.2.3.gem
+        Fetching mustermann-1.1.1.gem
+        Fetching rack-protection-2.2.0.gem
+        Successfully installed tilt-2.0.10
+        Successfully installed rack-2.2.3
+        Successfully installed rack-protection-2.2.0
+        Successfully installed mustermann-1.1.1
+        Successfully installed sinatra-2.2.0
+        Parsing documentation for tilt-2.0.10
+        Installing ri documentation for tilt-2.0.10
+        Parsing documentation for rack-2.2.3
+        Installing ri documentation for rack-2.2.3
+        Parsing documentation for rack-protection-2.2.0
+        Installing ri documentation for rack-protection-2.2.0
+        Parsing documentation for mustermann-1.1.1
+        Installing ri documentation for mustermann-1.1.1
+        Parsing documentation for sinatra-2.2.0
+        Installing ri documentation for sinatra-2.2.0
+        Done installing documentation for tilt, rack, rack-protection, mustermann, sinatra after 18 seconds
+        Fetching webrick-1.7.0.gem
+        Successfully installed webrick-1.7.0
+        Parsing documentation for webrick-1.7.0
+        Installing ri documentation for webrick-1.7.0
+        Done installing documentation for webrick after 0 seconds
+        6 gems installed
+        ```
+
+        - 続いて次のプログラムを書いて実行してみてください。
+
+        ```ruby
+        require "sinatra" # ① sinatraを読み込み。
+        get "/hi" do # ② /hi へアクセルされた時の処理をブロックで書く。
+          "hi!" # ③ ブロックの最後の結果をブラウザで表示する。
+        end
+        ```
+
+        ```ruby
+        yoshiwo@Yoshiwos-MacBook-Pro rubybook % ruby sinatra_hi.rb -p 4567
+        [2022-04-13 09:21:58] INFO  WEBrick 1.7.0
+        [2022-04-13 09:21:58] INFO  ruby 3.1.0 (2021-12-25) [x86_64-darwin20]
+        == Sinatra (v2.2.0) has taken the stage on 4567 for development with backup from WEBrick
+        [2022-04-13 09:21:58] INFO  WEBrick::HTTPServer#start: pid=79933 port=4567
+
+        # 実行コマンドは、ファイル名に続けて -p 4567 を加えてください。
+        # 上記のような表示がされたら、ブラウザからhttp://localhost:4567/hiへアクセス、hi!と表示されれば成功です。
+        ```
+
+        - ①のrequireメソッドで最初にsinatraを読み込みます。②のgetメソッドはsinatraが用意しているメソッドです。get “/hi”と書くと、ブラウザからパス(URLの後半の部分)/hiへアクセスされた時の処理を続くブロックで書くことができます。getメソッドの引数(ここでは”/hi”)デパスを指定して、続くブロックの最後の結果(ここでは”hi!”)をブラウザで表示します。より詳しい動作については、P.247の「Webアプリの基本動作」も参考にしてください。
+        - 実行コマンドは、ファイル名に続けて`-p 4567`を加えてください。コマンドプロンプトで実行して、上記のような表示がされたら、ブラウザからhttp://localhost:4567/hiへアクセスします。hi!と表示されれば成功です。
+        - **このプログラムは今までのプログラムと違い、実行すると終了せずに動き続け、その間はコマンドプロンプトでキーボード入力を受け付けません。別のコマンドを実行したい場合はプログラムを終了させます。**controlキーを押しながらCキーを押すことでプログラムを終了できます(これは、他のプログラムを実行している場合にも共通の操作です)。
+        - そして、うまく動いた場合は上のように表示されますが、うまく動かなかった場合のパターンもいくつか見てみましょう。
+        - もしも次のような画面が表示された場合は(**テキストP.245参照**)、Sinatraは動作していますが、アクセス先のパスが違う状態です。URLの/hiの部分(パスと呼びます)が正しいか、また、プログラムのget “/hi’ doの部分が正しいかを確認してみてください。プログラムを修正した場合は、controlキーを押しながらCキーを押すことでプログラムを一度終了して、もう一度起動してください。
+        - 次のような画面が表示された場合は(**テキストP.245参照**)、Sinatraが動作していない状態です。URLと実行コマンドの4567の数字(ポートと呼びます)が揃っていない可能性があります。または、プログラムにバグがありrubyコマンドを実行したものの終了してしまっている可能性があります。プログラムが終了してしまっている場合は、コマンドプロンプトにエラーメッセージが表示されているはずです。
