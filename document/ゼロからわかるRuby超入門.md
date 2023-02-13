@@ -4114,3 +4114,6 @@
         ```
 
         - 必要な標準添付ライブラリを読み込み、①でリクエスト先として先程と同じ https://www.example.com を指定したURIオブジェクトを作ります。②でNet::HTTP.postメソッドを呼び出してHTTP POSTリクエストを行っています。HTTP POSTメソッドは例えば住所の登録などで使うので、リクエストとしてでデータを送ることが多いです。ここで、引数のuriはリクエスト先、{mocha: 400}.to_jsonは送るJSON形式データ、”Content-Type” ⇒ “application/json”は送るデータの形式としてJSONを指定しています。
+    - 📍まとめ
+        - Net::HTTPクラスとURIモジュールを使うとHTTPリクエストを投げることができる。
+        - JSONモジュールを使うとJSONとハッシュとを変換できる。
