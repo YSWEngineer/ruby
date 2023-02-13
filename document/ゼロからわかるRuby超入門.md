@@ -4042,8 +4042,6 @@
         </html>
         ```
 
-        ![Example Domain.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/20111388-7db9-4a87-9569-40285b84afdd/Example_Domain.png)
-
         - ①のrequire “net/http”で標準添付ライブラリ net/http を読み込みます。これで④Net::HTTPクラスを使えるようになります。::は前に出てきた名前空間の指定で、Netモジュールの中にあるHTTPクラスを指しています。②のrequire “uri”で標準添付ライブラリuriを読み込みます。これで③でURIモジュールをつかえるようになります。
         - ③のURI.parseメソッドにURLを文字列で渡すことで、URIオブジェクト(正確にはURI::HTTPSオブジェクト)を作っています。URIとURLは、ここでは同じものと考えて差し支えありません。ここでできたオブジェクトは、とあるURI(ここでは”[https://example.com/](https://example.com/)”)を扱うオブジェクトです。ちなみに、アクセス先の https://example.com/ は、IANA(Internet Assigned Numbers Authority、インターネットに関連する資源を管理する組織)が例として用意しているURLです。
         - ④のNet::HTTP.getメソッドに③で作ったURIオブジェクトを渡すと、URIオブジェクトが示す先のWebサーバ(ここでは “https://example.com/”)へHTTP GETメソッドでリクエストを送ります。Webサーバが返したレスポンスHTMLが戻り値となり、pメソッドで表示されています。
