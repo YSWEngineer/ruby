@@ -4097,3 +4097,20 @@
 
         - ①で標準添付ライブラリであるjsonを読み込みます。②でハッシュ{mocha: 400}へto_jsonメソッドを呼び出して、JSON形式へ変換します。また、ここでpの引数を渡す時に、()を省略すると意図通りに解釈されずにエラーとなるので、()で囲んでいます。
         - JSONへ変換することで、例えばHTTPリクエストする時に利用することもできます。
+    - WebページへHTTP POSTメソッドでリクエストをする
+        - これまで見てきた、ブラウザでWebページへリクエストするときや、リクエストするプログラムでは、HTTP GETメソッドを使っていました。これは、リクエスト先の状態を変えない時に使います。このほか、リクエスト先の状態を変える時に使う、HTTP POSTメソッドもあります。例えば、住所を登録するケースで、入力フォームに情報を入れて登録ボタンを押した時に使われます。HTTP POSTリクエストを行うプログラムは次のようになります。
+
+        ```ruby
+        require "net/http"
+        require "uri"
+        require "json"
+        uri = URI.parse("https://www.example.com") # ①
+        result = Net::HTTP.post(uri, {mocha: 400}.to_json, "Content-Type" => "application/json") # ②
+        p result
+        ```
+
+        ```ruby
+        #<Net::HTTPOK 200 OK readbody=true>
+        ```
+
+        - 必要な標準添付ライブラリを読み込み、①でリクエスト先として先程と同じ https://www.example.com を指定したURIオブジェクトを作ります。②でNet::HTTP.postメソッドを呼び出してHTTP POSTリクエストを行っています。HTTP POSTメソッドは例えば住所の登録などで使うので、リクエストとしてでデータを送ることが多いです。ここで、引数のuriはリクエスト先、{mocha: 400}.to_jsonは送るJSON形式データ、”Content-Type” ⇒ “application/json”は送るデータの形式としてJSONを指定しています。
