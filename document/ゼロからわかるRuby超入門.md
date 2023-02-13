@@ -4118,5 +4118,5 @@
         - Net::HTTPクラスとURIモジュールを使うとHTTPリクエストを投げることができる。
         - JSONモジュールを使うとJSONとハッシュとを変換できる。</details>
     
-<details><summary>CHAPTER 11 使いこなす</summary>
+**<details><summary>CHAPTER 11 使いこなす</summary>**
 ここまで読み進めてきた皆さんはかなりのRuby力を獲得してきました。ここではさらに理解を深めて力をつけるための題材を揃えました。
