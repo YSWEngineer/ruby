@@ -4118,4 +4118,4 @@
         - Net::HTTPクラスとURIモジュールを使うとHTTPリクエストを投げることができる。
         - JSONモジュールを使うとJSONとハッシュとを変換できる。</details>
     
-<details><summary></summary>
+<details><summary>CHAPTER 11 使いこなす</summary>
