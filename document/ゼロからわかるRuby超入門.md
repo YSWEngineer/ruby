@@ -4047,3 +4047,38 @@
         - ④のNet::HTTP.getメソッドに③で作ったURIオブジェクトを渡すと、URIオブジェクトが示す先のWebサーバ(ここでは “https://example.com/”)へHTTP GETメソッドでリクエストを送ります。Webサーバが返したレスポンスHTMLが戻り値となり、pメソッドで表示されています。
         - ブラウザで同じURLへアクセスして、結果を見比べてみてください。ブラウザの機能で、「HTMLソースを表示する」がある場合は、Rubyプログラムで取得した結果を同様の内容が表示されます。
         - ページの内容を利用したい場合は、得られた文字列をnokogiri Gemなどのxmlパーサーと呼ばれる道具を使うと便利です。詳しくはnokogiriのドキュメントを参照してください。
+    - WebページへアクセスしてJSONを取得する
+        - 先程のプログラムで取得したHTMLは、ブラウザで見ることが主目的であるため、HTMLデータの中から目当てのデータを取得する用途には向いていません。データをやりときすることを目的とした別の形式として、JSONがあります。ここでは、**Web上のJSON形式のデータへアクセスして、中のデータを取得してみましょう。**
+
+        ```ruby
+        require "net/http" # ①
+        require "uri" # ②
+        uri = URI.parse("https://igarashikuniaki.net/example.json") # ③
+        p result = Net::HTTP.get(uri) # ④
+        ```
+
+        ```ruby
+        yoshiwo@Yoshiwos-MacBook-Pro rubybook % ruby json1.rb
+        "{\"caffe latte\":400}\n"
+        ```
+
+        - 先程のget.rbとほぼ同じ構成のプログラムで、違うのは③のURLの部分だけです。URLは httpps://igarashikuniaki.net/example.json です。このURLは著者のページです。
+        - Net::HTTP.get で取得したものはJSON形式の文字列です。今回のリクエスト先はHTMLではなく、JSONを返しています。JSONはRubyのハッシュと似た書式です。標準添付ライブラリjsonを使うとハッシュへ変換することができます。書き換えたプログラムは以下です。
+
+        ```ruby
+        require "net/http"
+        require "uri"
+        require "json" # ① JSONライブラリをロード
+        uri = URI.parse("https://igarashikuniaki.net/example.json")
+        result = Net::HTTP.get(uri)
+        hash = JSON.parse(result) # ② resultをJSONからハッシュへ変換
+        p hash
+        p hash["caffe latte"] # ③
+        ```
+
+        ```ruby
+        {"caffe latte"=>400}
+        400
+        ```
+
+        - ①で標準添付ライブラリjsonを読み込んでいます。これで②のJSONモジュールが使えるようになります。JSON.parseメソッドは、引数で渡したJSONである文字列を、ハッシュへと変換するメソッドです。ハッシュに変換すれば、Rubyのプログラムの中で簡単に扱うことができるようになります。③はハッシュの章でもよく出てきた、ハッシュのキーから値を取得する書き方ですね。
