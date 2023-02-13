@@ -3979,3 +3979,73 @@
         - ブラウザはリクエストをサーバーへ投げる。
         - Webアプリはリクエストに対応したHTMLを作り、レスポンスとして返す。
         - ブラウザはレスポンスで返ってきたHTMLを解釈して表示する。
+- 10-3 Webへアクセスするプログラムを作る
+    
+    前の節ではWebアプリの作り方を学びました。次は、ブラウザ側を作ってみます。ブラウザの通信機能の部分に相当するプログラムを書いて、Webへアクセスしてみましょう。
+    - WebページへアクセスしてHTMLを取得する
+        - 普段はブラウザでアクセスしているWebページへ、プログラムを書いてアクセスしてみましょう。前の節で見てきたように、WebページへアクセスするためにはHTTPまたはHTTPSを使います。Rubyが用意している net/http ライブラリ(プログラミングに使用する様々なモジュールを収めたファイル)を使って、指定したURLへHTTPやHTTPSでアクセスしてみます。ネットに接続している状態で、次のプログラムを実行してください。
+
+        ```ruby
+        require "net/http" # ①
+        require "uri" # ②
+        uri = URI.parse("https://example.com/") # ③
+        puts Net::HTTP.get(uri) # ④
+        ```
+
+        ```ruby
+        yoshiwo@Yoshiwos-MacBook-Pro rubybook % ruby get.rb
+        <!doctype html>
+        <html>
+        <head>
+            <title>Example Domain</title>
+
+            <meta charset="utf-8" />
+            <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <style type="text/css">
+            body {
+                background-color: #f0f0f2;
+                margin: 0;
+                padding: 0;
+                font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+            }
+            div {
+                width: 600px;
+                margin: 5em auto;
+                padding: 2em;
+                background-color: #fdfdff;
+                border-radius: 0.5em;
+                box-shadow: 2px 3px 7px 2px rgba(0,0,0,0.02);
+            }
+            a:link, a:visited {
+                color: #38488f;
+                text-decoration: none;
+            }
+            @media (max-width: 700px) {
+                div {
+                    margin: 0 auto;
+                    width: auto;
+                }
+            }
+            </style>    
+        </head>
+
+        <body>
+        <div>
+            <h1>Example Domain</h1>
+            <p>This domain is for use in illustrative examples in documents. You may use this
+            domain in literature without prior coordination or asking for permission.</p>
+            <p><a href="https://www.iana.org/domains/example">More information...</a></p>
+        </div>
+        </body>
+        </html>
+        ```
+
+        ![Example Domain.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/20111388-7db9-4a87-9569-40285b84afdd/Example_Domain.png)
+
+        - ①のrequire “net/http”で標準添付ライブラリ net/http を読み込みます。これで④Net::HTTPクラスを使えるようになります。::は前に出てきた名前空間の指定で、Netモジュールの中にあるHTTPクラスを指しています。②のrequire “uri”で標準添付ライブラリuriを読み込みます。これで③でURIモジュールをつかえるようになります。
+        - ③のURI.parseメソッドにURLを文字列で渡すことで、URIオブジェクト(正確にはURI::HTTPSオブジェクト)を作っています。URIとURLは、ここでは同じものと考えて差し支えありません。ここでできたオブジェクトは、とあるURI(ここでは”[https://example.com/](https://example.com/)”)を扱うオブジェクトです。ちなみに、アクセス先の https://example.com/ は、IANA(Internet Assigned Numbers Authority、インターネットに関連する資源を管理する組織)が例として用意しているURLです。
+        - ④のNet::HTTP.getメソッドに③で作ったURIオブジェクトを渡すと、URIオブジェクトが示す先のWebサーバ(ここでは “https://example.com/”)へHTTP GETメソッドでリクエストを送ります。Webサーバが返したレスポンスHTMLが戻り値となり、pメソッドで表示されています。
+        - ブラウザで同じURLへアクセスして、結果を見比べてみてください。ブラウザの機能で、「HTMLソースを表示する」がある場合は、Rubyプログラムで取得した結果を同様の内容が表示されます。
+        - ページの内容を利用したい場合は、得られた文字列をnokogiri Gemなどのxmlパーサーと呼ばれる道具を使うと便利です。詳しくはnokogiriのドキュメントを参照してください。
