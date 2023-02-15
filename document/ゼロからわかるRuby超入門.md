@@ -4463,4 +4463,119 @@
     
     クラスをより使いこなすことができる便利な機能と、クラスの仕組みについて、ここまでの内容に加えてもう少しだけ解説します。
     
-    
+    - インスタンス変数を簡単に操作する
+        - P.193でインスタンス変数を取得、代入するメソッドの作り方を学びました。これはよく使う機能なので、短い書き方が用意されています。インスタンス変数を取得、代入するプログラムをまずは前に出てきた書き方で書いてみます。
+
+        ```ruby
+        class Drink
+          def name # ①
+            @name
+          end
+          def name=(text) # ②
+            @name = text
+          end
+        end
+
+        drink = Drink.new
+        drink.name = "カフェラテ"
+        p drink.name #=> "カフェラテ"
+        ```
+
+        ```ruby
+        % ruby attr1.rb 
+        "カフェラテ"
+        ```
+
+        - このプログラムの①のnameメソッドを定義する3行には、次の短い書き方が用意されています。次の3行を、後ろの1行で書くことができます。
+
+        ```ruby
+        def name
+            @name
+        end
+        ```
+
+        ```ruby
+        attr_reader :name
+        ```
+
+        - `attr_reader`は「同名のインスタンス変数を戻り値とするメソッドを定義する」メソッドです。attr_readerの後ろに、インスタンス変数から@を取り除いた名前をシンボルで書きます。これを使ってプログラムを書き換えると次のようになります。
+
+        ```ruby
+        class Drink
+          attr_reader :name
+          def name=(text) # ②
+            @name = text
+          end
+        end
+
+        drink = Drink.new
+        drink.name = "カフェラテ"
+        p drink.name #=> "カフェラテ"
+        ```
+
+        ```ruby
+        % ruby attr2.rb
+        "カフェラテ"
+        ```
+
+        - そして、②の`name=メソッド`を定義する3行にも、次の短い書き方が用意されています。次の3行を、後ろの1行で書くことができます。
+
+        ```ruby
+        def name=(text)
+            @name = text
+        end
+        ```
+
+        ```ruby
+        attr_writer :name
+        ```
+
+        - `attr_writer`は「同名のインスタンス変数へ代入するメソッドを定義する」メソッドです。プログラムを書き換えると次のようになります。
+
+        ```ruby
+        class Drink
+          attr_reader :name
+          attr_writer :name
+        end
+
+        drink = Drink.new
+        drink.name = "カフェラテ"
+        p drink.name #=> "カフェラテ"
+        ```
+
+        ```ruby
+        % ruby attr3.rb
+        "カフェラテ"
+        ```
+
+        ruby attr3.rb
+
+        - とても短いプログラムになりました。そして**さらに短くすることができます**。attr_readerとattr_writerは今回のようにセットで使うことが多いため、この2つを合体させた`attr_accessor`メソッドが用意されています。attr_accessorメソッドは、「同名のインスタンス変数を戻り値とするメソッドを定義する」と「同名のインスタンス変数へ代入するメソッドを定義する」の両方を行うメソッドです。次の2行をattr_accessorを使って書き換えると次のようになります。
+
+        ```ruby
+        attr_reader :name
+        attr_writer :name
+        ```
+
+        ```ruby
+        attr_accessor :name
+        ```
+
+        - プログラム全体を書き換えて実行してみましょう。
+
+        ```ruby
+        class Drink
+          attr_accessor :name
+        end
+
+        drink = Drink.new
+        drink.name = "カフェラテ"
+        p drink.name #=> "カフェラテ"
+        ```
+
+        ```ruby
+        % ruby attr4.rb
+        "カフェラテ"
+        ```
+
+    - self
