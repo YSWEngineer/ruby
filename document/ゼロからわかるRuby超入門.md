@@ -4860,4 +4860,15 @@
 
     Macに初めからインストールされているRubyは、少しバージョンが古いです。最新のRubyを使いたい場合は、自分でインストールします。MacにRubyをインストールするためには、Homebrewというツールが必要です。
     
-    
+    - Homebrewをインストールする
+        - HomebrewはmacOSようのパッケージマネージャです。Homebrewを使うことで、最新版のRubyを含む、プログラミングに必要な様々なツールを簡単にインストールできます。
+        - Homebrewのサイト [https://brew.sh/index_ja](https://brew.sh/index_ja) にアクセスします。
+        - 「インストール」の下に書かれているスクリプトをコピーし、ターミナルで実行します。
+
+        ```ruby
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        ```
+
+        - 管理者権限のパスワードを求められるので、Macのログインパスワードを入力してください。
+        - Press RETURN to continue or any other key to abortと表示されたらreturnキーを押してください。
+        - Installation successful!が表示されると、インストール完了です。 
