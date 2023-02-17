@@ -4872,3 +4872,23 @@
         - 管理者権限のパスワードを求められるので、Macのログインパスワードを入力してください。
         - Press RETURN to continue or any other key to abortと表示されたらreturnキーを押してください。
         - Installation successful!が表示されると、インストール完了です。 
+    - Rubyをインストールする
+        - Homebrewを使って最新版のRubyをインストールします。ターミナルでbrew install rubyを実行すると、自動的にRubyのダウンロードとインストールが行われます。
+
+        ```ruby
+        brew install ruby
+        ```
+
+        - Homebrewを使ってインストールしたRubyを使うために、Rubyプログラムの場所を環境変数PATHに追加します。brew install rubyコマンドの実行結果に書かれているecho ‘export PATH=...のコマンドをターミナルで実行してください。Apple Silicon搭載Macでは、/usr/local/opt/ruby/binではなく/opt/homebrew/opt/ruby/binとなります。
+
+        ```ruby
+        echo 'export PATH="/usr/local/opt/ruby/bin:$PATH"' >> ~/.zshrc
+        ```
+
+        - 最新版のRubyがインストールされたことを確認するには、ターミナルでruby -vを実行します。
+
+        ```ruby
+        ruby -v
+        ```
+
+    - Rubyのバージョンを更新する
