@@ -122,7 +122,10 @@
     hello  tom again!
     ```
     
-  </details>
+- まとめ
+  - gets
+  - chomp
+  - プログラムの終了方法(ターミナル)</details>
   
 **<details><summary>#05 数値を受け取って計算してみよう</summary>**
 
