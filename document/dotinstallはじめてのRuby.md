@@ -162,4 +162,64 @@
   - 動作確認</details>
 
 **<details><summary>#06 条件に応じて表示を変えよう</summary>**
+- 次は、受け取った数値があらかじめ用意しておいた答えと一致するかどうかを調べて、結果を表示してみましょう。
+    - answerという変数を用意してあげて、今回は答えは6としましょう。
+    - それからメッセージは、「数を当てる」という意味で、推測を意味するguessにしておきます。また、変数名もguessにしておくとわかりやすいです。
+    
+    ```ruby
+    answer = 6
+    
+    print "Your guess?"
+    guess = gets.to_i
+    ```
+    
+    - answerとguessを比べたいのですがif endという命令を使ってあげます。なお、answerとguessが等しいという記号は==を使ってあげてください。変数に値を代入するのが`=`、比較する時に使うのが`==`なので、間違えないようにしてください。
+    - もし等しかった時の処理はifとendの間に書けばよいのでBingo!と表示してあげましょう。
+    
+    ```ruby
+    answer = 6
+    
+    print "Your guess?"
+    guess = gets.to_i
+    
+    if answer == guess
+      puts "Bingo!"
+    end
+    ```
+    
+    ```ruby
+    % ruby main.rb
+    Your guess? 6
+    Bingo!
+    
+    % ruby main.rb
+    Your guess? 3
+    ```
+    
+    - 数字が合えばBingo!が表示されます。もしanswerとguessが等しくなかった場合にもメッセージを出したい場合は、間にelseと書いてあげて、endの間にanswerとguessが等しくなかった時の処理を書いてあげればOKです。
+    
+    ```ruby
+    answer = 6
+    
+    print "Your guess?"
+    guess = gets.to_i
+    
+    if answer == guess
+      puts "Bingo!"
+    else
+      puts "Boo..."
+    end
+    ```
+    
+    ```ruby
+    % ruby main.rb
+    Your guess? 3
+    Boo...
+    ```
+    
+    - ちゃんとBoo...と出たのがわかります。
+- 要点まとめ
+  - if...end
+  - if...else...end</details>
 
+**<details><summary></summary>**
