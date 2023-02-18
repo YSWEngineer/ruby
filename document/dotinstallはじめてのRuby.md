@@ -124,5 +124,5 @@
     
   </details>
   
-**<details><summary>#05 数値を受け取って計算してみよう</summary>
+**<details><summary>#05 数値を受け取って計算してみよう</summary>**
 
