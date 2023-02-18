@@ -128,4 +128,35 @@
   - プログラムの終了方法(ターミナル)</details>
   
 **<details><summary>#05 数値を受け取って計算してみよう</summary>**
+- 今回作りたいのは数当てゲームなので、数を受け取って何らかの計算をとりあえずしてみましょう。
+    - 今までの復習になりますが、改行なしでメッセージを表示したいのでprint “Your number?”としてあげつつ、入力を受け取ってnumに入れてあげましょう。
+    - numを表示したいのですが、その時に計算をしてあげましょう。入力した数値に3を足して出力してみます。
+    - 実行して、適当に数字を入力してreturnを押すと、エラーになります。
+    
+    ```ruby
+    % ruby main.rb
+    Your number? 5 # 5を入力して、returnを押すとエラーが表示
+    main.rb:4:in `+': no implicit conversion of Integer into String (TypeError)
+    	from main.rb:4:in `<main>'
+    ```
+    
+    - これはgetsが受け取るのは、あくまでも文字列だからです。したがって、計算するために数値に変換するための処理が必要です。
+    - いろいろな方法がありますが、chompを`.to_i`にすると整数値に変換してくれます。このto_iはto integerの略です。
+    - なお、整数値に変換するとそもそも改行がなくなるので、さらにchompする必要はありません。
+    
+    ```ruby
+    print "Your number?"
+    num = gets.to_i
+    
+    puts num + 3
+    ```
+    
+    ```ruby
+    % ruby main.rb
+    Your number? 5
+    8
+    ```
 
+- 要点まとめ
+  
+- #06 条件に応じて表示を変えよう
