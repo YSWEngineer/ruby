@@ -357,3 +357,4 @@
   - loop...end
   - break</details>
 
+**<details><summary>#09 正解までの回数を表示しよう</summary>**
