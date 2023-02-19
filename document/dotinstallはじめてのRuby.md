@@ -358,3 +358,86 @@
   - break</details>
 
 **<details><summary>#09 正解までの回数を表示しよう</summary>**
+- 次はもう少しゲームっぽくしてみましょう。何回で当てたかを最後に表示してあげます。
+    - 何回で当てたかは、countという変数で保持してあげましょう。最初は0にしておいて、入力を受けるたびに+1してあげます。
+    - 入力を受けるたびに+1にするには、countに1を足してcount自身に代入してあげればよい。
+    
+    ```ruby
+    answer = rand(10) + 1
+    count = 0
+    
+    loop do
+      print "Your guess?"
+      guess = gets.to_i
+      count = count + 1
+    
+      if answer == guess
+        puts "Bingo!"
+        break
+      elsif answer > guess
+        puts "Bigger!"
+      else
+        puts "Smaller!"
+      end
+    end
+    ```
+    
+    - 計算をして自分自身に代入するといった処理はよく行うので、実は短い記法が用意されています。どうするかというと、`count += 1` とすると`count = count + 1`と全く同じ意味になるので覚えておいてください。
+    
+    ```ruby
+    answer = rand(10) + 1
+    count = 0
+    
+    loop do
+      print "Your guess?"
+      guess = gets.to_i
+      # count = count + 1
+      count += 1
+    
+      if answer == guess
+        puts "Bingo!"
+        break
+      elsif answer > guess
+        puts "Bigger!"
+      else
+        puts "Smaller!"
+      end
+    end
+    ```
+    
+    - あとは正解になった時に、countを表示してあげればよいでしょう。
+    
+    ```ruby
+    answer = rand(10) + 1
+    count = 0
+    
+    loop do
+      print "Your guess?"
+      guess = gets.to_i
+      # count = count + 1
+      count += 1
+    
+      if answer == guess
+        puts "Bingo! It took #{count} guesses!"
+        break
+      elsif answer > guess
+        puts "Bigger!"
+      else
+        puts "Smaller!"
+      end
+    end
+    ```
+    
+    ```ruby
+    % ruby main.rb
+    Your guess? 6
+    Smaller!
+    Your guess? 5
+    Smaller!
+    Your guess? 3
+    Smaller!
+    Your guess? 1  
+    Bingo! It took 4 guesses!
+    ```
+    
+    - このようにRubyでは短いコードで直感的にプログラミングをしていくことができます。
