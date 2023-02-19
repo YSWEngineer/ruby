@@ -224,3 +224,71 @@
 
 **<details><summary>#07 条件を追加してみよう</summary>**
 - 次は、answerとguessを比べてanswerがもっと大きいのか、もっと小さいのかも表示してみましょう。どうするかというと、さらに条件を加えてあげればいいですね。
+  - elsifとして条件を書きます。
+  - answerがguessより大きかったら、もっと大きな数字だよ、という意味でBigger!と表示してあげましょう。
+  - それから、どちらの条件にも当てはまらなかったら、それはanswerがguessより小さいということなので、もっと小さな数字だよ、という意味でSmaller!と表示してあげます。
+
+  ```ruby
+  answer = 6
+
+  print "Your guess?"
+  guess = gets.to_i
+
+  if answer == guess
+    puts "Bingo!"
+  elsif answer > guess
+    puts "Bigger!"
+  else
+    puts "Smaller!"
+  end
+  ```
+
+  ```ruby
+  % ruby main.rb
+  Your guess? 5
+  Bigger! # 答えが6なのでbigger!が表示
+
+  % ruby main.rb
+  Your guess? 8
+  Smaller! # 答えが6なのでSmaller!が表示
+
+  % ruby main.rb
+  Your guess? 6
+  Bingo! # 答えが6なのでBingo!が表示
+  ```
+
+  - 答えが決まっているのもつまらないので、answerがランダムに決まるようにしてあげましょう。どうするかというと、rand()という命令を使ってあげます。
+  - `rand(10)`とすると、0から10未満のランダムな整数値を生成してくれるので0から9のどれかになります。
+  - 今回欲しいのは1から10なので + 1してあげればよいでしょう。
+  - ついでに正解も表示するようにしてみましょう。判定が終わった後に、「答えはこれだったよ」とputsで変数を埋め込みながら表示してあげます。
+
+  ```ruby
+  answer = rand(10) + 1
+
+  print "Your guess?"
+  guess = gets.to_i
+
+  if answer == guess
+    puts "Bingo!"
+  elsif answer > guess
+    puts "Bigger!"
+  else
+    puts "Smaller!"
+  end
+
+  puts "Answer was #{answer}"
+  ```
+
+  ```ruby
+  % ruby main.rb
+  Your guess? 6
+  Bigger!
+  Answer was 9
+
+  % ruby main.rb
+  Your guess? 9
+  Smaller!
+  Answer was 5
+  ```
+
+  - こうした乱数も使えるようになっておきましょう。
