@@ -111,4 +111,68 @@
     - コメント
     - print, puts, p</details>
 
-- #03 変数、定数を使ってみよう
+**<details><summary>#03 変数、定数を使ってみよう</summary>**
+- 変数について。
+    - 変数はデータにつけるラベルのようのものです。変数を使うことで、複雑なデータにわかりやすい名前をつけたり、その名前で計算や使い回しができたりするので見ていきましょう。
+    - シンプルな例ですが、前回のプログラムを変数を使って書き換えてみたいとも思います。
+        - hello worldという値にmsgという変数を割り当ててあげましょう。msgはmessageの省略形。
+        - 変数にはルールがあって、英小文字もしくはアンダーバー(_)で始めないといけないというルールがあります。
+        - 変数には何回でも値を割り当てることができます。例えば、msg = “hello world again’のように、あとで値を書き換えて再度表示してみると、今度はputs msgではhello world againが表示されます。
+        
+        ```ruby
+        # 変数
+        # 変数名は 英小文字 または _ から始める
+        
+        msg = "hello world"
+        puts msg
+        
+        msg = "hello world again"
+        puts msg
+        ```
+        
+        ```ruby
+        % ruby hello.rb
+        hello world
+        hello world again
+        ```
+        
+        - 変数は実はもう少し奥が深いのですが、まずは基本としてこの辺りを押さえておいてください。
+- 定数について。
+    - 定数も変数と同じで値に付けるラベルなのですが、変数と違ってプログラム中で値を書き換えて欲しくないものに対して使います。
+    - 定数の名前の付け方にもルールがあり、最初が英小文字でないといけません。
+    - 慣習的に全部大文字にすることが多いです。
+    - 定数を書き換えるとおかしなことになりますので、見てみましょう。
+    
+    ```ruby
+    # 変数
+    # 変数名は 英小文字 または _ から始める
+    
+    # msg = "hello world"
+    # puts msg
+    
+    # msg = "hello world again"
+    # puts msg
+    
+    # 定数
+    # - 英大文字
+    
+    VERSION = 1.1
+    puts VERSION
+    
+    VERSION = 1.2
+    puts VERSION
+    ```
+    
+    ```ruby
+    % ruby hello.rb
+    1.1
+    hello.rb:16: warning: already initialized constant VERSION
+    hello.rb:13: warning: previous definition of VERSION was here
+    1.2
+    ```
+    
+    - 最初に1.1と表示されるのですが、その後に警告が出ているのがわかります。Rubyでは警告は出してくれますが、そこで処理が止まるわけではなく、実際にはこのように値が書き変わって表示されてしまうので、その点に注意しつつ、警告を無視せずにきちんと対処するようにしておいてください。
+- 要点まとめ
+    - 変数
+    - 定数</details>
+
