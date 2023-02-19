@@ -195,3 +195,97 @@
     - インスタンス</details>
 
 **<details><summary>#05 数値オブジェクトを使おう</summary>**
+- 数値に関するオブジェクトについて、もう少し詳しく見ていきましょう。
+    - 表現方法は、32や4.8といった具合に書いていけばOKです。
+    - オブジェクトがどのクラスに属していて、どのようなメソッドを持っているかを調べる方法について見ていきましょう。
+        - とは言っても簡単で、.classメソッド、.methodsメソッドを使えばOKです。
+        
+        ```ruby
+        # 数値
+        # 32 4.8
+        
+        p 4.8.class
+        p 4.8.methods
+        ```
+        
+        ```ruby
+        % ruby hello.rb
+        Float # クラスの種類
+        [:zero?, :angle, :**, :<=>, :-@, :phase, :<=, :>=, :==, :===, :nan?,
+         :infinite?, :finite?, :next_float, :prev_float, :eql?, :%, :*, :+,
+         :inspect, :-, :/, :<, :>, :to_int, :to_s, :to_i, :to_f, :to_r, :divmod,
+         :fdiv, :quo, :coerce, :modulo, :numerator, :denominator, :rationalize,
+         :magnitude, :abs, :floor, :ceil, :arg, :round, :truncate, :positive?,
+         :negative?, :hash, :polar, :dup, :imaginary, :imag, :+@, :to_c, :abs2,
+         :real, :conjugate, :conj, :real?, :singleton_method_added, :div, :integer?,
+         :clone, :i, :remainder, :nonzero?, :step, :rectangular, :rect, :between?,
+         :clamp, :singleton_class, :itself, :taint, :tainted?, :untaint, :untrust,
+         :untrusted?, :trust, :methods, :singleton_methods, :protected_methods,
+         :private_methods, :public_methods, :instance_variables, :instance_variable_get,
+         :instance_variable_set, :instance_variable_defined?, :remove_instance_variable,
+         :instance_of?, :kind_of?, :is_a?, :display, :public_send, :class, :frozen?,
+         :then, :tap, :yield_self, :extend, :method, :public_method, :singleton_method,
+         :define_singleton_method, :=~, :!~, :nil?, :respond_to?, :freeze, :object_id,
+         :send, :to_enum, :enum_for, :__send__, :!, :instance_eval, :instance_exec,
+         :!=, :equal?, :__id__] # メソッドの紹介
+        ```
+        
+        - たくさん出てきましたが、4.8はFloatクラスで、メソッドはこういったものがあるよ、というのがわかります。
+        - **や=~などの記号もメソッドであることに注意しておいてください。
+- 代表的なメソッドについて。
+    - 四則演算
+        - 足し算 は +、引き算は -、掛け算は *、割り算は /を使えばOKです。
+        - 余りについては %、べき乗は **を使います。
+            - 例を見ていきましょう。
+            
+            ```ruby
+            # 数値
+            # 32 4.8
+            
+            # p 4.8.class
+            # p 4.8.methods
+            
+            # + - * / % **
+            
+            p 10 + 3
+            p 10 * 3
+            p 2.4 * 2 # 浮動小数点数についてもつかえるのでこのような書き方もできます。
+            p 10 / 3 # 3 商は普通に/にする。
+            p 10 % 3 # 1 余りの場合は%にする。
+            p 10.0 / 3 # 10割る3を3.33333...にしたい場合は、どちらかを浮動小数点数にしてあげればよいので、「10.0 / 3」とすればOKです。
+            p Rational(2, 5) + Rational(3, 4) #Rubyでは有理数(分数)の扱いもできて、その場合はRationalを使ってあげてください。
+            # 例えば、2 / 5を表現したい場合には「Rational(2, 5)」と書けばOKです。
+            # 分数同士の計算もできるので「5分の2足す4分の3」の場合は「Rational(2, 5) + Rational(3, 4)」と書きます。
+            p 2/5r + 3/4r # Rationalは短い書き方が用意されていて、5分の2の場合は「2/5r」と書きます。
+            ```
+            
+            ```ruby
+            % ruby hello.rb
+            13
+            30
+            4.8
+            3
+            1
+            3.3333333333333335
+            (23/20)
+            (23/20)
+            ```
+            
+        - Floatクラスに関しては、前回も言いましたが、四捨五入や小数点以下の切り捨て切り上げなどができたりします。
+            - どういうメソッドを使うかというと、四捨五入の場合はround、そして小数点以下切り捨ての場合はfloor、小数点以下の切り上げの場合はceil(シール)という命令を使ってあげてください。
+            
+            ```ruby
+            p 52.6.round #四捨五入
+            p 52.6.floor # 小数点以下切り捨て
+            p 52.6.ceil # 小数点以下切り上げ
+            ```
+            
+            ```ruby
+            % ruby hello.rb
+            53
+            52
+            53
+            ```
+            
+        - 質問:小数点の掛け算がキリの悪い数値になるのは何故ですか？
+            - 先生:実はコンピュータは数値を2進数で扱っていますので、10進数で表している数値をそのまま扱うことができません。特に小数点の扱いは限りなく近い数値という形でしか表現できず、今回もそれが原因でキリの悪い数値が出力されてしまっているのかなと思います。
