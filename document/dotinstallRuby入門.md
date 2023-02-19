@@ -194,3 +194,4 @@
     - メソッド
     - インスタンス</details>
 
+**<details><summary>#05 数値オブジェクトを使おう</summary>**
