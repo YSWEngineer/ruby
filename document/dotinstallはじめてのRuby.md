@@ -296,3 +296,4 @@
   - if...elsif...else...end
   - 乱数</details>
 
+**<details><summary>#08 ループ処理を使ってみよう</summary>**
