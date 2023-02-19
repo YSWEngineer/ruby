@@ -294,3 +294,4 @@
     - 演算方法
     - 便利なメソッド</details>
 
+**<details><summary>#06 文字列オブジェクトを使おう</summary>**
