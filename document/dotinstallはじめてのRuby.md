@@ -297,3 +297,60 @@
   - 乱数</details>
 
 **<details><summary>#08 ループ処理を使ってみよう</summary>**
+- 次は、正解するまで何回もチャレンジできるようにしてみましょう。
+    - どうするかというとループ処理で囲ってあげます。
+    - loop do endとしてあげて、数を当てる処理をカットして、貼り付けてあげればよいでしょう。
+    - 字下げが崩れた場合は、範囲選択してtabキーでなおすことができるので覚えておいてください。
+    
+    ```ruby
+    answer = rand(10) + 1
+    
+    loop do
+      print "Your guess?"
+      guess = gets.to_i
+    
+      if answer == guess
+        puts "Bingo!"
+      elsif answer > guess
+        puts "Bigger!"
+      else
+        puts "Smaller!"
+      end
+    
+      puts "Answer was #{answer}"
+    end
+    ```
+    
+    - ただ、このままだと永久にループしてしますので、条件に合致したらループから抜けてあげましょう。answerがguessと一緒だった場合に終わりたいので、breakとしてあげるとループを抜けることができます。
+    - それから、正解を表示してはゲームにならないので、puts “Answer was #{answer}”は消してあげましょう。
+    
+    ```ruby
+    answer = rand(10) + 1
+    
+    loop do
+      print "Your guess?"
+      guess = gets.to_i
+    
+      if answer == guess
+        puts "Bingo!"
+        break
+      elsif answer > guess
+        puts "Bigger!"
+      else
+        puts "Smaller!"
+      end
+    end
+    ```
+    
+    ```ruby
+    % ruby main.rb
+    Your guess? 6
+    Smaller!
+    Your guess? 5
+    Bingo!
+    % 
+    ```
+    
+    - Bingo!になってループを抜けて終了したのがわかります。
+    - こうしたループ処理もプログラミングではよく使うので慣れておくようにしてください。</details>
+
