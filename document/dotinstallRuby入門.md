@@ -553,5 +553,12 @@
         p scores.values
         p scores.has_key?(:taguchi)
         ```
-        
+
+- 要点まとめ
+    - ハッシュの表現方法
+    - 要素へのアクセス方法
+    - size
+    - keys
+    - values
+    - has_key?
 - #10 オブジェクトを変換してみよう
