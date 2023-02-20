@@ -490,4 +490,4 @@
     - size
     - sort</details>
 
-- #09 ハッシュオブジェクトを使おう
+**<details><summary>#09 ハッシュオブジェクトを使おう</summary>**
