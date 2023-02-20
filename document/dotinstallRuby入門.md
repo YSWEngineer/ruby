@@ -562,4 +562,4 @@
     - values
     - has_key?</details>
 
-- #10 オブジェクトを変換してみよう
+**<details><summary>#10 オブジェクトを変換してみよう</summary>**
