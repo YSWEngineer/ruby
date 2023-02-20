@@ -362,5 +362,10 @@
         helloworld
         hellohellohellohellohellohellohellohellohellohello
         ```
-        
+
+- 要点まとめ
+    - 文字列の表現方法
+    - 特殊文字
+    - 式展開
+    - 文字列の演算
 - #07 ?や!がついたメソッドを使おう
