@@ -560,5 +560,6 @@
     - size
     - keys
     - values
-    - has_key?
+    - has_key?</details>
+
 - #10 オブジェクトを変換してみよう
