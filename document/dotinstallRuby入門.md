@@ -563,3 +563,76 @@
     - has_key?</details>
 
 **<details><summary>#10 オブジェクトを変換してみよう</summary>**
+- いろいろな種類のオブジェクトを相互に変換したい場合を見てみましょう。
+    - 例えば、xが50で、yが”3”という文字列だったとします。この時、xとyを足そうとして「p x + y」としてもうまくいかないはずです。
+    
+    ```ruby
+    # 変換
+    
+    x = 50
+    y = "3"
+    
+    p x + y
+    ```
+    
+    ```ruby
+    % ruby hello.rb
+    hello.rb:6:in `+': String can't be coerced into Integer (TypeError)
+    	from hello.rb:6:in `<main>'
+    
+    # x が数値で y が文字列だからそうなっているという意味です
+    ```
+    
+    - x が数値で y が文字列だからです。
+    - x と y を足して 53 にしたかった場合、y を数値にしてあげる必要があります。
+        - もし整数に変換したい場合は、to integer という意味で「y.to_i」としてください。
+        - もし浮動小数点数にしたい場合は、to float という意味で「y.to_f」としてあげてください。
+    - x + y の足し算で 53 にするのではなくて、 x を文字列にしてあげて「503」にしたい場合は、逆に x の方を string にしたいので「x.to_s」としてあげればOKです。
+    
+    ```ruby
+    # 変換
+    
+    x = 50
+    y = "3"
+    
+    p x + y.to_i # to integer 整数に 
+    p x + y.to_f # to float 浮動小数点数に
+    p x.to_s + y # to string 文字列に
+    ```
+    
+    ```ruby
+    % ruby hello.rb
+    53
+    53.0
+    "503"
+    ```
+    
+    - このように違う種類のオブジェクトに変換することはよく行うので、覚えておいてください。
+- ハッシュと配列の相互変換について見ておきましょう。例えば、scoresをシンボルを使ってscores = {taguchi: 200, fkoji:400} のようにハッシュで表現してみましょう。
+    - これを配列に表現するには to Array(配列に) という意味で「scores.to_a」としてあげてください。こうしてあげると、キーと値が配列になった配列になります。
+    
+    ```ruby
+    scores = {taguchi: 200, fkoji: 400}
+    
+    p scores.to_a
+    ```
+    
+    ```ruby
+    % ruby hello.rb
+    [[:taguchi, 200], [:fkoji, 400]]
+    ```
+    
+    - この配列をハッシュに戻すには、 to Hash という意味で「scores.to_a.to_h」とするので覚えておきましょう。
+    
+    ```ruby
+    scores = {taguchi: 200, fkoji: 400}
+    
+    p scores.to_a.to_h
+    ```
+    
+    ```ruby
+    % ruby hello.rb
+    {:taguchi=>200, :fkoji=>400}
+    ```
+    
+    - こうした変換はよく行うので慣れておくようにしましょう。
