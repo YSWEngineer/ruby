@@ -642,4 +642,4 @@
     - to_a # 配列化
     - to_h # ハッシュ化</details>
 
- 
+**<details><summary>#11 %記法を使ってみよう</summary>**
