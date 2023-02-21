@@ -707,4 +707,4 @@
     - %Q 、%q
     - %W 、%w</details>
 
-- #12 書式付きで値を埋め込もう
+**<details><summary>#12 書式付きで値を埋め込もう</summary>**
