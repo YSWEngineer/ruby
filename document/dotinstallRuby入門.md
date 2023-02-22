@@ -926,4 +926,5 @@
     - gets
     - 後置のif</details>
 
-- #14 caseで条件分岐をしてみよう
+**<details><summary>#14 caseで条件分岐をしてみよう</summary>**
+
