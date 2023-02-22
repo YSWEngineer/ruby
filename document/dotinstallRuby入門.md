@@ -840,3 +840,85 @@
     - printf 、sprintf</details>
 
 **<details><summary>#13 ifで条件分岐をしてみよう</summary>**
+- score が 80 より大きかった時に何らかのメッセージを出すと書いてあげましょう。
+    - その場合は if のあとに条件を続けてあげて、score > 80 が真だった場合（つまり true だった場合）に行う処理を then 以下に書いてあげれば OK です。
+    - ちなみに score > 80 に合致した場合はこの処理なのですが、合致しなかった場合の処理も書くことができて、その場合は else と書いてあげて else 以下にその場合の処理を書いてあげましょう。
+    - ちなみに条件を繋げていくこともできて、その場合は elsif と書いてあげて条件を書いてあげてください。
+    - たとえば 80 より大きくないけれど 60 より大きかった場合に何らかのメッセージを表示したい場合は「elsif score > 60 then … 」と書いてあげれば OK でしょう。
+    
+    ```ruby
+    # if
+    
+    if score > 80 then
+      puts "great!"
+    elsif score >60 then
+      puts "good!"
+    else
+      puts "so so ...!"
+    end
+    ```
+    
+    - ちなみに then は省略できるので覚えておきましょう。
+    
+    ```ruby
+    # if
+    # then は省略可能
+    
+    if score > 80
+      puts "great!"
+    elsif score >60
+      puts "good!"
+    else
+      puts "so so ...!"
+    end
+    ```
+    
+    - ユーザーから入力を受け付けてみましょう。そのためのメソッドは gets です。
+    - ただ、 gets で受け取るのは文字列になるのでそれを数値に変換してあげないといけません。なので、「gets.to_i」とします。
+    
+    ```ruby
+    # if
+    
+    score = gets.to_i # .to_i で整数化
+    
+    if score > 80 then
+      puts "great!"
+    elsif score >60 then
+      puts "good!"
+    else
+      puts "so so ...!"
+    end
+    ```
+    
+    ```ruby
+    % ruby hello.rb
+    88
+    great!
+    % ruby hello.rb
+    77
+    good!
+    % ruby hello.rb
+    59
+    so so ...!
+    ```
+    
+    - 条件分岐で使った > は比較演算子と呼ばれ、他にもあります。
+    - 直感的で分かりやすいかと思うのですが「〜より大きい（>）」「〜より小さい（<）」「〜以上（>=）」「〜以下（<=）」そして「〜と等しい」というのは == を使ってあげてください。
+    - 「〜と等しくない」というのは != です。
+    - これらの比較演算子を合わせて論理演算子を使っていくことも可能です。
+    - & を 2 つ繋げて && (AND) にすることもできますし OR の場合は | が 2 つで || (OR)、そして NOT の否定の場合は ! を付ければいいので覚えておきましょう。
+    - それからこういった条件分岐をよくやるのですが、すごく単純な条件分岐の場合は if を後ろに書くこともできて、たとえば「puts "great!" if score > 80」といった書き方もできたりします。
+    
+    ```ruby
+    score = gets.to_i
+    
+    puts "great!" if score > 80
+    ```
+    
+    ```ruby
+    % ruby hello.rb
+    90
+    great!
+    ```
+    
+- #14 caseで条件分岐をしてみよう
