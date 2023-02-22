@@ -924,5 +924,6 @@
 - 要点まとめ
     - if...elsif...else...and
     - gets
-    - 後置のif
+    - 後置のif</details>
+
 - #14 caseで条件分岐をしてみよう
