@@ -837,4 +837,5 @@
 - 要点まとめ
     - “文字列” % 値
     - %s 、%d 、%f
-    - printf 、sprintf
+    - printf 、sprintf</details>
+
