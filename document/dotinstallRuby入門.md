@@ -839,4 +839,4 @@
     - %s 、%d 、%f
     - printf 、sprintf</details>
 
-**<details><summary>#01 Rubyを使ってみよう</summary>**
+**<details><summary>#13 ifで条件分岐をしてみよう</summary>**
