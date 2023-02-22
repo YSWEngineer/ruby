@@ -920,5 +920,9 @@
     90
     great!
     ```
-    
+
+- 要点まとめ
+    - if...elsif...else...and
+    - gets
+    - 後置のif
 - #14 caseで条件分岐をしてみよう
