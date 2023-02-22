@@ -839,3 +839,4 @@
     - %s 、%d 、%f
     - printf 、sprintf</details>
 
+**<details><summary>#01 Rubyを使ってみよう</summary>**
