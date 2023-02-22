@@ -927,4 +927,66 @@
     - 後置のif</details>
 
 **<details><summary>#14 caseで条件分岐をしてみよう</summary>**
-
+- いていきましょう。
+    - signal の値が red だった場合というのは「when "red"」のように書いていけば OK です。そしてその場合の処理なのですが then に続けて書いていきましょう。では赤信号なので stop! としてあげます。
+    - if のときと同じように then は省略できるのでそれも覚えておいてください。
+    - when はいくつでも書くことができて、例えば green だったら go!、yellow だったら caution! としたい場合は、このように書いてあげてください。
+    - それから signal がこのどれにも当てはまらなかった場合は else のあとに続いて書いていけば OK です。今回は wrong signal としてあげましょう。
+    - 最後は end とします。
+    - signal の値はせっかくなのでユーザーから入力しましょう。getsは1行読み込むのですが、最後に改行コードが付いているので chomp というメソッドでその最後の改行コードを取り除いてあげます。
+    
+    ```ruby
+    # case
+    
+    signal = gets.chomp # getsは1行読み込むのですが、最後に改行コードが付いているので chomp というメソッドでその最後の改行コードを取り除いてあげます
+    
+    case signal
+    when "red"
+      puts "stop!"
+    when "green"
+      puts "go!"
+    when "yellow"
+      puts "caution!"
+    else
+      puts "wrong signal"
+    end
+    ```
+    
+    ```ruby
+    % ruby hello.rb
+    red
+    stop!
+    % ruby hello.rb
+    yellow
+    caution!
+    % ruby hello.rb
+    pink
+    wrong signal
+    ```
+    
+    - ちなみにこのwhenの書き方は、複数の値を,(カンマ)区切りで書くことも可能です。
+    
+    ```ruby
+    # case
+    
+    signal = gets.chomp
+    
+    case signal
+    when "red"
+      puts "stop!"
+    when "green", "blue" # ,(カンマ)区切りで値を追加(複数の値を書く)
+      puts "go!"
+    when "yellow"
+      puts "caution!"
+    else
+      puts "wrong signal"
+    end
+    ```
+    
+    ```ruby
+    % ruby hello.rb
+    blue
+    go!
+    ```
+    
+    - こうした条件分岐はifを使っても実現できたりするのですが、caseを使うとすっきり書ける場合もあるので、こういった方法にも慣れておいてください。
