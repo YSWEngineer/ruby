@@ -1028,3 +1028,4 @@
     - case...when...else...end
     - 動作確認</details>
 
+**<details><summary>#15 while、timesを使ってみよう</summary>**
