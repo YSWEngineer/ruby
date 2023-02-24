@@ -1211,4 +1211,4 @@
     - while
     - times</details>
 
-**<details><summary>#01 Rubyを使ってみよう</summary>**
+**<details><summary>#16 for、eachを使ってみよう</summary>**
