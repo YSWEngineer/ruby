@@ -1274,3 +1274,50 @@
         それから for なのですが、実は内部的には each というメソッドを使っていたりします。
         
         なので、これらの処理は実は each を使って書き換えることができるのでその練習もしておきましょう。
+- each なのですが、集合的なオブジェクトのメソッドとして動作するので、「(15..20).each do |i| …」と書いてあげて、変数がある場合は do の後に縦線で囲ってあげてください。
+    
+    ```ruby
+    # for
+    
+    # for i in 15..20 do
+    #   p i
+    # end
+    
+    # for color in ["red", "blue"] do
+    #   p color
+    # end
+    
+    # for name, score in {taguchi:200, fkoji:400} do
+    #   puts "#{name}: #{score}"
+    # end
+    
+    # each
+    
+    (15..20).each do |i|
+      p i
+    end
+    
+    ["red", "blue"].each do |color|
+      p color
+    end
+    
+    {taguchi:200, fkoji:400}.each do |name, score|
+      puts "#{name}: #{score}"
+    end
+    ```
+    
+    ```ruby
+    % ruby hello.rb
+    15
+    16
+    17
+    18
+    19
+    20
+    "red"
+    "blue"
+    taguchi: 200
+    fkoji: 400
+    ```
+    
+    ちなみに times メソッドで見たように、繰り返す処理が 1 行ぐらいだったら do から end を { } で囲って 1 行で表現することもよくやるので、そういうやり方にも慣れておいてください。
