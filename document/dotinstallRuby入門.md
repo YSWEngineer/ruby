@@ -1334,4 +1334,4 @@
     - for
     - eachメソッドによる書き換え</details>
 
-**<details><summary>#01 Rubyを使ってみよう</summary>**
+**<details><summary>#17 loop、break、nextを使おう</summary>**
