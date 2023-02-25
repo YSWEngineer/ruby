@@ -1445,3 +1445,175 @@
 **<details><summary>#18 メソッドを作ってみよう</summary>**
 - 直接メソッドを定義してみる
     - メソッドの定義はdefというキーワードから初めてメソッド名を書いてあげればOKです。
+- 今回話を簡単にするために単に hi! と表示するためだけの sayHi というメソッドを作ってみましょう。
+    
+    ```ruby
+    # メソッド
+    
+    def sayHi
+      puts "hi!"
+    end
+    ```
+    
+    定義ができたら呼び出せばいいのですが、呼び出すにはメソッド名を書いてあげれば OK です。
+    
+    ```ruby
+    # メソッド
+    
+    def sayHi
+      puts "hi!"
+    end
+    
+    sayHi
+    ```
+    
+    ```ruby
+    % ruby hello.rb
+    hi!
+    ```
+    
+    それからこちらにオプションを渡したい場合、括弧をつけてあげて、中に変数を書いてあげれば OK です。
+    
+    このメソッドに渡すオプションのことを引数というので、用語として覚えておいてください。
+    
+    引数はカンマ区切りでいくつでも渡すことができるのですが、今回は 1 つにしておきます。
+    
+    ```ruby
+    # メソッド
+    
+    def sayHi(name) # 引数
+      puts "hi!"
+    end
+    
+    sayHi
+    ```
+    
+    この引数はこちらの処理の中で使うことができるので、今回はこのように文字列の中で展開してあげましょう。
+    
+    ```ruby
+    # メソッド
+    
+    def sayHi(name) # 引数
+      puts "hi! #{name}"
+    end
+    
+    sayHi
+    ```
+    
+    (name)に渡す値は実行時に与えてあげればいいので、sayHi("taguchi") のように渡してあげます。
+    
+    ```ruby
+    # メソッド
+    
+    def sayHi(name) # 引数
+      puts "hi! #{name}"
+    end
+    
+    # sayHi("taguchi")
+    sayHi "taguchi"
+    ```
+    
+    なお意味が曖昧にならない場合は sayHi "taguchi" のように丸括弧は省略することができるので、それも覚えておいてください。
+    
+    ```ruby
+    % ruby hello.rb
+    hi! taguchi
+    ```
+    
+    それからこちらの引数にデフォルト値を与えることもできます。
+    
+    例えばということで、name = "tom" としてあげましょう。
+    
+    ```ruby
+    # メソッド
+    
+    def sayHi(name = "tom") # 引数
+      puts "hi! #{name}"
+    end
+    
+    # sayHi("taguchi")
+    sayHi "taguchi"
+    sayHi
+    ```
+    
+    そうしてあげると、名前を渡さなかったときに tom 君という名前にしてくれるはずです。
+    
+    ```ruby
+    % ruby hello.rb
+    hi! taguchi
+    hi! tom
+    ```
+    
+    「hi! taguchi」「hi! tom」と出ているのがわかるかと思います。
+    
+    こういった使い方にも慣れておいてください。
+    
+    それからメソッドに値を返してもらいたい場合もあります。
+    
+    実はメソッドは最後に評価された値をそのまま返すので、この文字列を返したい場合は単にこのように書けば OK です。
+    
+    ```ruby
+    # メソッド
+    
+    def sayHi(name = "tom") # 引数
+      # puts "hi! #{name}"
+      "hi! #{name}"
+    end
+    
+    # sayHi("taguchi")
+    sayHi "taguchi"
+    sayHi
+    ```
+    
+    もしくは明示的にこれを返したいんだよ、と指定したい場合は return と書いてもいいので、それも覚えておきましょう。
+    
+    ```ruby
+    # メソッド
+    
+    def sayHi(name = "tom") # 引数
+      # puts "hi! #{name}"
+      return "hi! #{name}" # 明示的にこれを返したい、と指定したい場合は return を書く
+    end
+    
+    # sayHi("taguchi")
+    # sayHi "taguchi"
+    # sayHi
+    
+    p sayHi
+    ```
+    
+    ```ruby
+    % ruby hello.rb
+    "hi! tom"
+    ```
+    
+    それからもう 1 点、メソッド内で定義された変数には外からアクセスできないというルールがあるので、それにも注意しておいてください。
+    
+    例えばこちらに score = 80 と書いてあげたときに、こちらで p score とすると、こちらの score はメソッドの中でしか有効ではないので、このようなアクセスができないはずです。
+    
+    ```ruby
+    # メソッド
+    
+    def sayHi(name = "tom") # 引数
+      score = 80
+      # puts "hi! #{name}"
+      return "hi! #{name}"
+    end
+    
+    # sayHi("taguchi")
+    # sayHi "taguchi"
+    # sayHi
+    
+    # p sayHi
+    p score
+    ```
+    
+    ```ruby
+    % ruby hello.rb
+    hello.rb:14:in `<main>': undefined local variable or method `score' for main:Object (NameError)
+    
+    p score
+      ^^^^^
+    ```
+    
+    そのような変数は定義されていないと、エラーが表示される。
