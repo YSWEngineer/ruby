@@ -1931,3 +1931,133 @@
     - インスタンス変数</details>
 
 **<details><summary>#20 アクセサを使ってみよう</summary>**
+- 前回見たインスタンス変数ですが、インスタンスメソッド内では使うことができますが、外部からアクセスすることはできません。
+    
+    ```ruby
+    # クラス
+    
+    class User
+    
+      def initialize(name)
+        @name = name
+      end
+    
+      def sayHi
+        puts "hi! i am #{@name}"
+      end
+    
+    end
+    
+    tom = User.new("tom")
+    tom.sayHi
+    
+    bob = User.new("bob")
+    bob.sayHi
+    ```
+    
+    ただ次のようにインスタンス変数の値にアクセスしたい場合はよくあるかと思います。
+    
+    例えば書き換えてみたり、もしくは単に表示してみるなどの処理ですね。
+    
+    ```ruby
+    # クラス
+    
+    class User
+    
+      def initialize(name)
+        @name = name
+      end
+    
+      def sayHi
+        puts "hi! i am #{@name}"
+      end
+    
+    end
+    
+    tom = User.new("tom")
+    
+    tom.name  ="tom Jr."
+    p tom.name
+    
+    tom.sayHi
+    
+    bob = User.new("bob")
+    bob.sayHi
+    ```
+    
+    そうした場合にこれを実現するには別途インスタンス変数をいじるための name= というメソッドや name というメソッドを作らないといけないのですが、よく行う処理なので実は Ruby では簡単な記法を用意してくれていたりします。
+    
+    具体的にはどうするかというと…、attr_accesor :name のようにインスタンス変数の名前をシンボルで渡してあげると、自動的に name をセットするための name= というメソッドと、name にアクセスするための name というメソッドを作ってくれたりします。
+    
+    ちなみに値を設定するほうのメソッドを setter、そして値を取得するほうのメソッドを getter、2 つを合わせてアクセサと呼んだりするので、用語として覚えておいてください。
+    
+    ```ruby
+    # クラス
+    
+    class User
+    
+      attr_accessor :name # アトリビュートアクセサ と言う
+      # setter: name=(value) # セッター
+      # getter: name # ゲッター
+    	# setter と getter 2つ合わせて アクセサ と呼ぶ
+    
+      def initialize(name)
+        @name = name
+      end
+    
+      def sayHi
+        puts "hi! i am #{@name}"
+      end
+    
+    end
+    
+    tom = User.new("tom")
+    
+    tom.name  ="tom Jr."
+    p tom.name
+    
+    tom.sayHi
+    ```
+    
+    ちなみに getter だけ定義したい場合は attr_reader とすれば OK なので、これも覚えておくと良いかと思います。
+    
+    ```ruby
+    attr_accessor :name
+    attr_reader :name
+    # setter: name=(value)
+    # getter: name
+    ```
+    
+    ```ruby
+    class User
+    
+      attr_accessor :name
+      # attr_reader :name
+      # setter: name=(value)
+      # getter: name
+    
+      def initialize(name)
+        @name = name
+      end
+    
+      def sayHi
+        puts "hi! i am #{@name}"
+      end
+    
+    end
+    
+    tom = User.new("tom")
+    
+    tom.name  ="tom Jr."
+    p tom.name
+    
+    tom.sayHi
+    ```
+    
+    ```ruby
+    % ruby hello.rb
+    "tom Jr."
+    hi! i am tom Jr.
+    ```
+    
+- メソッド内で使えるselfというオブジェクトについて
