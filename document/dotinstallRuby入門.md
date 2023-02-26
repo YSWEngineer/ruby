@@ -1677,4 +1677,4 @@
     - 引数のデフォルト値
     - 返り値</details>
 
-**<details><summary>#01 Rubyを使ってみよう</summary>**
+**<details><summary>#19 クラスを作ってみよう</summary>**
