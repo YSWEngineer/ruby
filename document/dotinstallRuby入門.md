@@ -2132,4 +2132,6 @@
 
                 `self.name`と`@name`はどちらも同じ値を呼び出すことができるんですね。
 - 要点まとめ
-        
+    - インスタンス変数にアクセスするためのメソッド
+    - attr_accessor、attr_reader
+    - self
