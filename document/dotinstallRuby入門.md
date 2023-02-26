@@ -2134,4 +2134,4 @@
 - 要点まとめ
     - インスタンス変数にアクセスするためのメソッド
     - attr_accessor、attr_reader
-    - self
+    - self</details>
