@@ -2121,3 +2121,8 @@
     ```
     
 - 質疑応答
+    - 質問:attr_accesor と attr_reader の機能について教えてください。
+        - 回答:attr_accesor は getter と setter を同時に、attr_reader は getter のみを自動で生成してくれます。
+            - `getter`や`setter`は個別に定義しても良いのですが、記述が単調で誰が定義しても全く同じコードを記述することになります。そのため機械的に作成する便利なものが`attr_accesor`や`attr_reader`だと考えてください。
+
+                それぞれ、`attr_accesor`は`getter`と`setter`をセットで、`attr_reader`は`getter`のみを自動で生成してくれるものと理解いただくと良いのかなと思います。
