@@ -2061,3 +2061,63 @@
     ```
     
 - メソッド内で使えるselfというオブジェクトについて
+    - selfはそのメソッドを受け取っているインスタンス自身を指します。
+    
+    なのでこの場合、ここで self を使うと sayHi を受け取っているtom.sayHiの tom オブジェクトのことになります。
+    
+    ちなみにメソッドを受け取っているオブジェクトのことを「受け取っているもの」という意味で「レシーバー」と呼んだりするので、これも用語として覚えておきましょう。
+    
+    したがってここで [self.name](http://self.name/) とすると、今 getter が設定されているはずなので、結果としてインスタンス変数が取得できて name が返ってくるはずです。
+    
+    ```ruby
+    class User
+    
+      attr_accessor :name
+      # attr_reader :name
+      # setter: name=(value)
+      # getter: name
+    
+      def initialize(name)
+        @name = name
+      end
+    
+      def sayHi
+        # self
+        # self.name -> @name
+        puts "hi! i am #{@name}"
+      end
+    
+    end
+    
+    tom = User.new("tom")
+    
+    tom.name  ="tom Jr."
+    p tom.name
+    
+    tom.sayHi # レシーバー
+    ```
+    
+    なので実は @name は [self.name](http://self.name/) で書き換えることもできるので、覚えておきましょう。
+    
+    ```ruby
+    def sayHi
+      # self
+      # self.name -> @name
+      puts "hi! i am #{@name}"
+      puts "hi! i am #{self.name}"
+    end
+    ```
+    
+    それから self は意味が曖昧にならない限り省略できたりもするので、name という書き方もできると覚えておいてください。
+    
+    ```ruby
+    def sayHi
+      # self
+      # self.name -> @name
+      puts "hi! i am #{@name}"
+      puts "hi! i am #{self.name}"
+      puts "hi! i am #{name}"
+    end
+    ```
+    
+- 質疑応答
