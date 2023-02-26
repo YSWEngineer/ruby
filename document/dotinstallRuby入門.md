@@ -1930,4 +1930,4 @@
     - initializeメソッド
     - インスタンス変数</details>
 
-**<details><summary>#01 Rubyを使ってみよう</summary>**
+**<details><summary>#20 アクセサを使ってみよう</summary>**
