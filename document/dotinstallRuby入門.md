@@ -1678,3 +1678,208 @@
     - 返り値</details>
 
 **<details><summary>#19 クラスを作ってみよう</summary>**
+- 自分でクラスを作り、メソッドを定義してみましょう。
+    - 今回はUserクラスを作ります。
+        - 作るにはこのように「class User」「end」としてあげてください。
+            
+            ```ruby
+            # クラス
+            
+            class User
+            end
+            ```
+            
+            ちなみにクラス名は必ず大文字から始めないといけないので、それに注意しておきましょう。
+            
+            では、前回のように簡単なメソッドを作っていきたいと思います。単にhi!とだけ表示させてみましょう。
+            
+            ```ruby
+            # クラス
+            
+            class User
+            
+              def sayHi
+                puts "hi!"
+              end
+              
+            end
+            ```
+            
+            ここまでできたら、User クラスのオブジェクト、つまりインスタンスを作ることができるので、そのためには User.new としてあげましょう。
+            
+            ```ruby
+            # クラス
+            
+            class User
+            
+              def sayHi
+                puts "hi!"
+              end
+            
+            end
+            
+            User.new
+            ```
+            
+            今回tomという変数に割り当ててあげます。
+            
+            ```ruby
+            # クラス
+            
+            class User
+            
+              def sayHi
+                puts "hi!"
+              end
+            
+            end
+            
+            tom = User.new
+            ```
+            
+            そうすると tom のインスタンスオブジェクトが sayHi メソッドを使えるはずなので、tom.sayHi とすると hi! と表示されるはずです。
+            
+            ```ruby
+            # クラス
+            
+            class User
+            
+              def sayHi
+                puts "hi!"
+              end
+            
+            end
+            
+            tom = User.new
+            tom.sayHi
+            ```
+            
+            ```ruby
+            % ruby hello.rb
+            hi!
+            ```
+            
+            ではもう少し拡張して、今度は自分の名前を挨拶に含めるようにしましょう。
+            
+            今までと同じように sayHi に引数を渡してもいいのですが、インスタンスは変数を使って値を保持することもできるので、そのやり方も見ていきます。
+            
+            ではどうするかというと、インスタンスを作るときに名前を渡してあげて、それをインスタンス内で保持するようにしてあげましょう。
+            
+            ```ruby
+            # クラス
+            
+            class User
+            
+              def sayHi
+                puts "hi!"
+              end
+            
+            end
+            
+            tom = User.new("tom")
+            tom.sayHi
+            ```
+            
+            クラスのほうなのですが、new が呼ばれたときに呼ばれる、特殊な initialize というメソッドがあるので、そちらでいろいろ書いていってあげます。
+            
+            ```ruby
+            # クラス
+            
+            class User
+            
+              def initialize(name)
+            
+              end
+            
+              def sayHi
+                puts "hi!"
+              end
+            
+            end
+            
+            tom = User.new("tom")
+            tom.sayHi
+            ```
+            
+            ここで渡った name を、インスタンス内で値が保持されるインスタンス変数というものに入れていきたいのですが、インスタンス変数は変数名の前に @ をつけるルールになっているので、このように @name = name としてあげれば OK です。
+            
+            ```ruby
+            # クラス
+            
+            class User
+            
+              def initialize(name)
+                @name = name
+              end
+            
+              def sayHi
+                puts "hi!"
+              end
+            
+            end
+            
+            tom = User.new("tom")
+            tom.sayHi
+            ```
+            
+            前回メソッド内で定義した変数はその外からアクセスできないと言いましたが、このインスタンス変数は特別で、このインスタンスの中であればどこででも使えます。
+            
+            したがって、sayHi メソッド内で展開することもできて、その場合は puts "hi! i am #{@name}" のように書いてあげてください。
+            
+            ```ruby
+            # クラス
+            
+            class User
+            
+              def initialize(name)
+                @name = name
+              end
+            
+              def sayHi
+                puts "hi! i am #{@name}"
+              end
+            
+            end
+            
+            tom = User.new("tom")
+            tom.sayHi
+            ```
+            
+            ```ruby
+            % ruby hello.rb
+            hi! i am tom
+            ```
+            
+            ちなみに tom さんの他に bob さんも作りたかった場合は、bob = User.new("bob") のように書いてあげれば OK です。
+            
+            ```ruby
+            # クラス
+            
+            class User
+            
+              def initialize(name)
+                @name = name
+              end
+            
+              def sayHi
+                puts "hi! i am #{@name}"
+              end
+            
+            end
+            
+            tom = User.new("tom")
+            tom.sayHi
+            
+            bob = User.new("bob")
+            bob.sayHi
+            ```
+            
+            そうするとちゃんとインスタンスごとに値が保持されるはずなので、違う名前で挨拶がされるはずです。
+            
+            ```ruby
+            % ruby hello.rb
+            hi! i am tom
+            hi! i am bob
+            ```
+            
+- 質疑応答
