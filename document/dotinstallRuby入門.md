@@ -2278,3 +2278,85 @@
     ```
 
     こうですね、ちゃんとなっているのがわかるかと思います。
+- それからもう 1 つクラスで定数を定義する方法についても見ていきましょう。
+    
+    定数は 1 文字目が大文字で、慣習的に全て大文字にすることが推奨されているので、VERSION = 1.1 といった形にしてあげましょう。
+    
+    すると、このクラスの中でこちらの VERSION が使えるので、例えば「puts "#{VERSION}: User Class, #{@@count} instances."」のように書くことができます。
+    
+    ```ruby
+    # クラス
+    # - クラスメソッド
+    # - クラス変数
+    # - 定数
+    
+    class User
+    
+      @@count = 0
+    
+      VERSION = 1.1
+    
+      def initialize(name)
+        @@count += 1
+        @name = name
+      end
+    
+      def sayHi
+        puts "hi! i am #{@name}"
+      end
+    
+      def self.info
+        puts "#{VERSION}: User Class, #{@@count} instances."
+      end
+    
+    end
+    
+    tom = User.new("tom")
+    bob = User.new("bob")
+    steve = User.new("steve")
+    User.info
+    ```
+    
+    もしくはクラスの外からアクセスすることもできて、その場合は User::VERSION としてあげてください。
+    
+    ```ruby
+    # クラス
+    # - クラスメソッド
+    # - クラス変数
+    # - 定数
+    
+    class User
+    
+      @@count = 0
+    
+      VERSION = 1.1
+    
+      def initialize(name)
+        @@count += 1
+        @name = name
+      end
+    
+      def sayHi
+        puts "hi! i am #{@name}"
+      end
+    
+      def self.info
+        puts "#{VERSION}: User Class, #{@@count} instances."
+      end
+    
+    end
+    
+    tom = User.new("tom")
+    bob = User.new("bob")
+    steve = User.new("steve")
+    User.info
+    p User::VERSION
+    ```
+    
+    ```ruby
+    % ruby hello.rb
+    1.1: User Class, 3 instances.
+    1.1
+    ```
+    
+- #22 クラスを継承してみよう
