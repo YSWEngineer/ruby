@@ -2137,3 +2137,59 @@
     - self</details>
 
 **<details><summary>#21 クラスメソッド、クラス変数を使おう</summary>**
+- 今まで見てきたこういったメソッドはインスタンスから使えるインスタンスメソッドと呼ばれるものですが、実はクラスから直接呼び出すことができるクラスメソッドも定義ができたりします。
+    
+    それができるとクラスから直接呼ぶことができるので、例えば [User.info](http://user.info/) といった書き方が可能になります。
+    
+    ```ruby
+    # クラス
+    # - クラスメソッド
+    
+    class User
+    
+      def initialize(name)
+        @name = name
+      end
+    
+      def sayHi
+        puts "hi! i am #{@name}"
+      end
+    
+    end
+    
+    User.info
+    ```
+    
+    作り方はいくつかあるのですが、[self.info](http://self.info/) と書いてあげて、そちらに定義をしてあげれば OK です。
+    
+    では今回 User Class と表示するためだけのクラスメソッドを作ってみましょう。
+    
+    ```ruby
+    # クラス
+    # - クラスメソッド
+    
+    class User
+    
+      def initialize(name)
+        @name = name
+      end
+    
+      def sayHi
+        puts "hi! i am #{@name}"
+      end
+    
+      def self.info
+        puts "User Class"
+      end
+      
+    end
+    
+    User.info
+    ```
+    
+    ```ruby
+    % ruby hello.rb
+    User Class
+    ```
+    
+- それからクラス自体に値を保持するクラス変数もあるので、そちらについても見ていきます。
