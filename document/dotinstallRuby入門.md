@@ -2364,5 +2364,5 @@
     - クラス変数
     - 定数</details>
 
-**<details><summary>#01 Rubyを使ってみよう</summary>**
-#22 クラスを継承してみよう
+**<details><summary>#22 クラスを継承してみよう</summary>**
+
