@@ -2193,3 +2193,88 @@
     ```
     
 - それからクラス自体に値を保持するクラス変数もあるので、そちらについても見ていきます。
+    個々のインスタンスではなくインスタンス全てで値を共有することができます。
+
+    例を見ていきますが、今回 @@count というクラス変数を作って、インスタンスを作った数を保持してみましょう。
+
+    クラス変数には @@ をつけることがルールになっているので、@@count としてあげて、0 で初期化してあげましょう。
+
+    ```ruby
+    # クラス
+    # - クラスメソッド
+    # - クラス変数
+
+    class User
+
+      @@count = 0
+
+      def initialize(name)
+        @name = name
+      end
+    ```
+
+    あとは new されるたびに 1 を足してあげればいいので、@@count += 1 としてあげます。
+
+    ```ruby
+    # クラス
+    # - クラスメソッド
+    # - クラス変数
+
+    class User
+
+      @@count = 0
+
+      def initialize(name)
+        @@count += 1
+        @name = name
+      end
+    ```
+
+    ではせっかくなので、info のほうでも表示しておきたいと思います。
+
+    では「puts "User Class, #{@@count} instances."」としてあげれば OK でしょう。
+
+    ```ruby
+    def self.info
+      puts "User Class, #{@@count} instances."
+    end
+    ```
+
+    どうするかというと、インスタンスを作ればいいので、「tom = User.new("tom")」としてあげて、後は「bob = User.new("bob")」「steve = User.new("steve")」とすると、[User.info](http://user.info/) で 3 つのインスタンスができました、と出てくるはずです。
+
+    ```ruby
+    # クラス
+    # - クラスメソッド
+    # - クラス変数
+
+    class User
+
+      @@count = 0
+
+      def initialize(name)
+        @@count += 1
+        @name = name
+      end
+
+      def sayHi
+        puts "hi! i am #{@name}"
+      end
+
+      def self.info
+        puts "User Class, #{@@count} instances."
+      end
+
+    end
+
+    tom = User.new("tom")
+    bob = User.new("bob")
+    steve = User.new("steve")
+    User.info
+    ```
+
+    ```ruby
+    % ruby hello.rb
+    User Class, 3 instances.
+    ```
+
+    こうですね、ちゃんとなっているのがわかるかと思います。
