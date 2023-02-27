@@ -2135,3 +2135,5 @@
     - インスタンス変数にアクセスするためのメソッド
     - attr_accessor、attr_reader
     - self</details>
+
+**<details><summary>#20 アクセサを使ってみよう</summary>**
