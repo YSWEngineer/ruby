@@ -2136,4 +2136,4 @@
     - attr_accessor、attr_reader
     - self</details>
 
-**<details><summary>#20 アクセサを使ってみよう</summary>**
+**<details><summary>#21 クラスメソッド、クラス変数を使おう</summary>**
