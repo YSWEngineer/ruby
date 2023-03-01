@@ -2524,3 +2524,163 @@
 
 **<details><summary>#23 メソッドのアクセス権を理解しよう</summary>**
 種類としては public、protected、そして private があるのですが、protected はわりと特殊なシーンでしか使われないので、今回は省いていきます。
+- public
+    - まず public なのですが、通常のメソッドはデフォルトでこの指定になっていて、どこからでも呼び出すことができます。
+        
+        ただ例外があって、new したときに呼ばれる initialize メソッドと、クラスの外に書いたメソッドは自動的に private になるので、覚えておきましょう。
+        
+        private なのですが、これを指定するとレシーバーを指定できないメソッドになります。
+        
+        少しわかりづらいので例を出していきましょう。
+        
+        private のメソッドを定義するには、private キーワードの後に書いていけばいいので…、ここで定義してあげます。
+        
+        では今回は「def sayPrivate ...」としてあげましょう。
+        
+        こちらはレシーバーを指定できないので、例えば User のインスタンスから呼び出すことはできないということを覚えておいてください。
+        
+        ```ruby
+        # アクセス権
+        # - public
+        # - protected
+        # - private: レシーバーを指定できない
+        
+        class User
+        
+          def sayHi
+            puts "hi!"
+          end
+        
+          private
+        
+            def sayPrivate
+              puts "private"
+            end
+        
+        end
+        
+        class AdminUser < User
+        
+          def sayHello
+            puts "hello!"
+          end
+        
+        end
+        
+        # User.new.sayPrivate #NG
+        ```
+        
+        ただしクラスの中からは呼び出せるので、sayHi の中では sayPrivate と書くことができます。
+        
+        ```ruby
+        # アクセス権
+        # - public
+        # - protected
+        # - private: レシーバーを指定できない
+        
+        class User
+        
+          def sayHi
+            puts "hi!"
+            sayPrivate
+          end
+        
+          private
+        
+            def sayPrivate
+              puts "private"
+            end
+        
+        end
+        
+        class AdminUser < User
+        
+          def sayHello
+            puts "hello!"
+          end
+        
+        end
+        
+        # User.new.sayPrivate #NG
+        ```
+        
+        この sayPrivate なのですが、意味的には self.sayPrivate なのですが、private ではレシーバーを指定できないので必ず self は省略してあげて sayPrivate のように書いてあげてください。
+        
+        ```ruby
+        # アクセス権
+        # - public
+        # - protected
+        # - private: レシーバーを指定できない
+        
+        class User
+        
+          def sayHi
+            puts "hi!"
+            sayPrivate
+            # self.sayPrivate 意味的には self.syaPrivateなのですが、privateではレシーバーを指定できないので必ずselfは省略してあげてsayPrivateのように書いてあげてください。
+          end
+        
+          private
+        
+            def sayPrivate
+              puts "private"
+            end
+        
+        end
+        
+        class AdminUser < User
+        
+          def sayHello
+            puts "hello!"
+          end
+        
+        end
+        
+        # User.new.sayPrivate #NG
+        ```
+        
+        ここまでできたら、User.new.sayHi をしてみましょう。
+        
+        そうすると private も表示してくれるはずです。
+        
+        ```ruby
+        # アクセス権
+        # - public
+        # - protected
+        # - private: レシーバーを指定できない
+        
+        class User
+        
+          def sayHi
+            puts "hi!"
+            sayPrivate
+            # self.sayPrivate 意味的には self.syaPrivateなのですが、privateではレシーバーを指定できないので必ずselfは省略してあげてsayPrivateのように書いてあげてください。
+          end
+        
+          private
+        
+            def sayPrivate
+              puts "private"
+            end
+        
+        end
+        
+        class AdminUser < User
+        
+          def sayHello
+            puts "hello!"
+          end
+        
+        end
+        
+        # User.new.sayPrivate #NG
+        User.new.sayHi
+        ```
+        
+        ```ruby
+        % ruby hello.rb
+        hi!
+        private
+        ```
+        
+- クラスが継承された場合も見てあげましょう
