@@ -8,4 +8,4 @@
 
 ## [📖ゼロからわかるRuby超入門](https://github.com/YSWEngineer/ruby/blob/main/document/%E3%82%BC%E3%83%AD%E3%81%8B%E3%82%89%E3%82%8F%E3%81%8B%E3%82%8BRuby%E8%B6%85%E5%85%A5%E9%96%80.md)
 
-## [💻dotinstall はじめてのRuby](https://github.com/YSWEngineer/ruby/blob/main/document/dotinstall%E3%81%AF%E3%81%98%E3%82%81%E3%81%A6%E3%81%AERuby.md)
+## [💻✏️dotinstall はじめてのRuby](https://github.com/YSWEngineer/ruby/blob/main/document/dotinstall%E3%81%AF%E3%81%98%E3%82%81%E3%81%A6%E3%81%AERuby.md)
