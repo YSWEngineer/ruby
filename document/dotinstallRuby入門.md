@@ -2468,3 +2468,53 @@
         ```
         
     - それからこちらの子クラスのほうで同名のメソッドを上書きすることも実はできたりします。
+    
+        その場合、メソッドのオーバーライドといったりするので、これも用語として覚えておくと良いかと思います。
+
+        こちらでは「puts "hi! from admin!"」としてみたいと思います。
+
+        そうしてあげると tom.sayHi の出力が替わるはずです。
+
+        ```ruby
+        # クラスの継承
+
+        class User
+
+          def initialize(name)
+            @name = name
+          end
+
+          def sayHi
+            puts "hi! i am #{@name}"
+          end
+
+        end
+
+        # User: 親クラス、Super Class
+        # AdminUser: 子クラス、Sub Class
+
+        class AdminUser < User
+
+          def syaHello
+            puts "Hello from #{@name}"
+          end
+
+          # オーバーライド
+          def sayHi
+            puts "hi! from admin!"
+          end
+
+        end
+
+        tom = AdminUser.new("tom")
+        tom.sayHi
+        tom.syaHello
+        ```
+
+        ```ruby
+        % ruby hello.rb
+        hi! from admin!
+        Hello from tom
+        ```
+
+        クラスの拡張は奥が深かったり、いろいろ注意点もあったりするのですが、まずは基本としてこの辺りをおさえておくようにしてください。
