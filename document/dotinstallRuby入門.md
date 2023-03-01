@@ -2523,3 +2523,4 @@
     - メソッドのオーバーライド</details>
 
 **<details><summary>#23 メソッドのアクセス権を理解しよう</summary>**
+種類としては public、protected、そして private があるのですが、protected はわりと特殊なシーンでしか使われないので、今回は省いていきます。
