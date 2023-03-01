@@ -2684,3 +2684,139 @@
         ```
         
 - クラスが継承された場合も見てあげましょう
+    
+    ```ruby
+    # アクセス権
+    # - public
+    # - protected
+    # - private: レシーバーを指定できない
+    
+    class User
+    
+      def sayHi
+        puts "hi!"
+        sayPrivate
+        # self.sayPrivate 意味的には self.syaPrivateなのですが、privateではレシーバーを指定できないので必ずselfは省略してあげてsayPrivateのように書いてあげてください。
+      end
+    
+      private
+    
+        def sayPrivate
+          puts "private"
+        end
+    
+    end
+    
+    class AdminUser < User
+    
+      def sayHello
+        puts "hello!"
+      end
+    
+    end
+    
+    # User.new.sayPrivate #NG
+    User.new.sayHi
+    ```
+    
+    ここで AdminUser なのですが、sayHi と sayPrivate を両方継承しているので、実は sayPrivate を AdminUser でつくるメソッドからも呼び出せたりします。
+    
+    なので sayPrivate としてあげると、private が表示されるはずです。
+    
+    ```ruby
+    # アクセス権
+    # - public
+    # - protected
+    # - private: レシーバーを指定できない
+    
+    class User
+    
+      def sayHi
+        puts "hi!"
+        sayPrivate
+        # self.sayPrivate 意味的には self.syaPrivateなのですが、privateではレシーバーを指定できないので必ずselfは省略してあげてsayPrivateのように書いてあげてください。
+      end
+    
+      private
+    
+        def sayPrivate
+          puts "private"
+        end
+    
+    end
+    
+    class AdminUser < User
+    
+      def sayHello
+        puts "hello!"
+        sayPrivate
+      end
+    
+    end
+    
+    # User.new.sayPrivate #NG
+    # User.new.sayHi
+    
+    AdminUser.new.sayHello
+    ```
+    
+    ```ruby
+    % ruby hello.rb
+    hello!
+    private
+    ```
+    
+    こうしてあげると…こうですね、sayPrivate が呼び出せています。
+    
+    なおかつ同名のメソッドを実は上書きすることもできて、「def sayPrivate ...」としてあげると、こちらも普通に呼び出せるはずです。
+    
+    ```ruby
+    # アクセス権
+    # - public
+    # - protected
+    # - private: レシーバーを指定できない
+    
+    class User
+    
+      def sayHi
+        puts "hi!"
+        sayPrivate
+        # self.sayPrivate 意味的には self.syaPrivateなのですが、privateではレシーバーを指定できないので必ずselfは省略してあげてsayPrivateのように書いてあげてください。
+      end
+    
+      private
+    
+        def sayPrivate
+          puts "private"
+        end
+    
+    end
+    
+    class AdminUser < User
+    
+      # def sayHello
+      #   puts "hello!"
+      #   sayPrivate
+      # end
+    
+      def sayPrivate
+        puts "private from Admin"
+      end
+    
+    end
+    
+    # User.new.sayPrivate #NG
+    # User.new.sayHi
+    
+    # AdminUser.new.sayHello
+    AdminUser.new.sayPrivate
+    ```
+    
+    ```ruby
+    % ruby hello.rb
+    private from Admin
+    ```
+    
+    ちゃんと呼び出せているのがわかるかと思います。
+    
+    このように Ruby の private 指定は他の言語のオブジェクト指向プログラミングと動作が異なっていて、Sub Class から呼び出せたり、オーバーライドすることができたりするので、十分注意して使うようにしましょう。
