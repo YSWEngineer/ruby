@@ -2365,4 +2365,106 @@
     - 定数</details>
 
 **<details><summary>#22 クラスを継承してみよう</summary>**
-
+- クラスの継承
+    - 例えばUserクラスを継承して、新しくAdminUserクラスを作ってみたいと思います。
+        
+        書き方なのですが、このように「class AdminUser < User」としてあげれば OK です。
+        
+        ```ruby
+        # クラスの継承
+        
+        class User
+        
+          def initialize(name)
+            @name = name
+          end
+        
+          def sayHi
+            puts "hi! i am #{@name}"
+          end
+        
+        end
+        
+        class AdminUser < User
+        
+        end
+        ```
+        
+        なお User クラスを元に AdminUser クラスができたので、User クラスのことを親クラス、もしくは Super Class と呼んだりします。
+        
+        AdminUser クラスの方は子クラス、もしくは Sub Class と呼んだりするので、用語として覚えておいてください。
+        
+        せっかくなので、AdminUser のほうに独自メソッドも作ってみましょう。では単純にメッセージを表示してみます。
+        
+        "hello from #{@name}" としてあげて、インスタンス変数も使ってあげたいと思います。
+        
+        ```ruby
+        # User: 親クラス、Super Class
+        # AdminUser: 子クラス、Sub Class
+        
+        class AdminUser < User
+        
+          def syaHello
+            puts "Hello from #{@name}"
+          end
+        
+        end
+        ```
+        
+        ここまでできたらインスタンスを作ればいいので、tom = AdminUser.new("tom") としてあげます。
+        
+        ```ruby
+        # User: 親クラス、Super Class
+        # AdminUser: 子クラス、Sub Class
+        
+        class AdminUser < User
+        
+          def syaHello
+            puts "Hello from #{@name}"
+          end
+        
+        end
+        
+        tom = AdminUser.new("tom")
+        ```
+        
+        そうすると、sayHi と sayHello が使えるはずなので、「tom.sayHi」「tom.sayHello」とすれば想定通りの動きになるはずです。
+        
+        ```ruby
+        # クラスの継承
+        
+        class User
+        
+          def initialize(name)
+            @name = name
+          end
+        
+          def sayHi
+            puts "hi! i am #{@name}"
+          end
+        
+        end
+        
+        # User: 親クラス、Super Class
+        # AdminUser: 子クラス、Sub Class
+        
+        class AdminUser < User
+        
+          def syaHello
+            puts "Hello from #{@name}"
+          end
+        
+        end
+        
+        tom = AdminUser.new("tom")
+        tom.sayHi
+        tom.syaHello
+        ```
+        
+        ```ruby
+        % ruby hello.rb
+        hi! i am tom
+        Hello from tom
+        ```
+        
+    - それからこちらの子クラスのほうで同名のメソッドを上書きすることも実はできたりします。
