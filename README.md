@@ -2,6 +2,6 @@
 
 ### Rubyの環境構築をはじめ、Rubyについて学んのだ内容をまとめています。
 
-## [💻](https://github.com/YSWEngineer/ruby/blob/main/document/Ruby%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89(macOS).md)
+## [💻Ruby環境構築(macOS)](https://github.com/YSWEngineer/ruby/blob/main/document/Ruby%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89(macOS).md)
 
 ## [📖Rubyふりがなプログラミング](https://github.com/YSWEngineer/ruby/blob/main/document/Ruby%E3%81%B5%E3%82%8A%E3%81%8C%E3%81%AA%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0.md)
