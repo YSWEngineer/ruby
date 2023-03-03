@@ -2872,3 +2872,114 @@
     - private</details>
 
 **<details><summary>#24 モジュールで名前空間を作ろう</summary>**
+- モジュールはクラスのようにメソッドや定数をまとめられるものですが、インスタンスを作ったり継承したりできないという違いがあります。
+- 主な用途は 2 つあるのですが、今回は名前空間として使う方法について見ていきます。
+- 名前空間
+    - では例を出していきたいのですが、例えば動画に関する処理を作っていて movie_encode や、もしくは movie_export のような処理をたくさん書くことになる、というのはよくあることかと思います。
+        
+        ただたくさん作っていくと、これらのメソッド名が他の人が作ったメソッド名や、ライブラリのメソッド名などと衝突しないか心配になってきます。
+        
+        そうしたときにモジュールを使って自分だけの名前空間を作ってあげれば便利です。
+        
+        そうすればこうしたメソッドもすっきり書くことができて、例えば Movie.encode や Movie.export といった形で使うことができるかと思います。
+        
+        ```ruby
+        # module
+        # - 名前空間
+        
+        def movie_encode
+        end
+        
+        def movie_encode
+        end
+        
+        Movie.encode 
+        Movie.export
+        ```
+        
+        ではモジュールの作り方を見ていきましょう。
+        
+        どうするかというと、「module Movie ... end」とモジュール名を書いてあげてください。
+        
+        モジュール名の 1 文字目は必ず大文字なので覚えておきましょう。
+        
+        ```ruby
+        module Movie # モジュールの名の1文字目は必ず大文字
+        end
+        ```
+        
+        ではメソッドを定義していきたいのですが、Movie.encode のように使っていきたいので、クラスメソッドのように書いていってあげれば OK です。
+        
+        なので「def self.encode ...」としてあげて、例えば encoding... と表示させてみましょう。
+        
+        ```ruby
+        module Movie
+        
+          def self.encode
+            puts "encoding..."
+          end
+          
+        end
+        ```
+        
+        同じように self.export についても書いてみましょう。
+        
+        ```ruby
+        module Movie
+        
+          def self.encode
+            puts "encoding..."
+          end
+        
+          def self.encode
+            puts "exporting..."
+          end
+        
+        end
+        ```
+        
+        せっかくなので、定数も保持してみましょう。
+        
+        ではこちらのこのあたりで VERSION = 1.1 と値を保持してあげます。
+        
+        ```ruby
+        # module
+        # - 名前空間
+        
+        def movie_encode
+        end
+        
+        def movie_export
+        end
+        
+        module Movie
+        
+          VERSION = 1.1
+        
+          def self.encode
+            puts "encoding..."
+          end
+        
+          def self.export
+            puts "exporting..."
+          end
+        
+        end
+        
+        Movie.encode # モジュール名.クラスメソッド名で、クラスメソッドを呼び出す => クラスメソッドencodeを呼び出す
+        Movie.export # モジュール名.クラスメソッド名で、クラスメソッドを呼び出す => クラスメソッドexportを呼び出す
+        p Movie::VERSION
+        ```
+        
+        そうしてあげると、これらのメソッドは Movie.encode のように使うことができますし、定数に関してはクラス定数と同じように使うことができるので、例えば… Movie::VERSION のように使うことができるはずです。
+        
+        ```ruby
+        % ruby hello.rb
+        encoding... # モジュールMovieからクラスメソッドencodeが呼び出され、encodeはputs "encoding..."を処理する
+        exporting... # モジュールMovieからクラスメソッドexportが呼び出され、exportはputs "exporting..."を処理する
+        1.1 # モジュールMovieから定数VERSIONが呼び出され、pメソッドで1.1が表示
+        ```
+        
+        このように関連するメソッドや定数などをざっとまとめてグループ化したいだけのときに、モジュールは手軽に使えて便利なので慣れておくようにしてください。
+        
+        他の多くの言語でも定数は慣習的にすべて大文字で書くので、大文字で記述するようにしましょう。
