@@ -2871,4 +2871,4 @@
     - protected
     - private</details>
 
-**<details><summary>#01 Rubyを使ってみよう</summary>**
+**<details><summary>#24 モジュールで名前空間を作ろう</summary>**
