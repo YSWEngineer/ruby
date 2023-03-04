@@ -2988,3 +2988,129 @@
     - 名前空間の作り方</details>
 
 **<details><summary>#25 ミックスインを使ってみよう</summary>**
+- モジュールのもう1つの用途である、ミックスインについて
+    - 例えば今ゲームを作っていたとして、PlayerクラスとMonsterクラスを用意していたとしましょう。
+        
+        その場合にどちらにもデバッグに関するメソッドを入れたいのですが、Debug と Player や Monster は継承関係にあるものでもないし、かといって両方に書くのも面倒だったりします。
+        
+        その場合はデバッグに関するモジュールを作ってあげて、単に機能としてこちらのクラスに提供できたら便利です。
+        
+        ```ruby
+        # module
+        # - ミックスイン
+        
+        module Debug
+        end
+        
+        class Player
+        end
+        
+        class Monster
+        end
+        ```
+        
+        ではそのやり方を見ていきましょう。
+        
+        今回、info というメソッドを定義してあげましょう。
+        
+        前回のように (今回はinfoメソッドに)self をつけずに単にインスタンスメソッドにしてあげると、それを他のクラスのインスタンスメソッドとしてはめ込むことができたりします。
+        
+        これをミックスインというので用語として覚えておいてください。
+        
+        ```ruby
+        # module
+        # - ミックスイン
+        
+        module Debug
+        
+          def info
+          end
+          
+        end
+        
+        class Player
+        end
+        
+        class Monster
+        end
+        ```
+        
+        では今回はデバッグ情報を表示するという意味で、info メソッドを呼び出したクラスの名前と適当な文字列を表示するようにしてあげましょう。
+        
+        ```ruby
+        # module
+        # - ミックスイン
+        
+        module Debug
+        
+          def info
+            puts "#{self.class} debug info ..."
+          end
+        
+        end
+        
+        class Player
+        end
+        
+        class Monster
+        end
+        ```
+        
+        このモジュール(module Debug)をこちらの Playerクラス にミックスインするにはどうしたらいいかというと… include というキーワードを使ってあげてください。
+        
+        Monster のほうも同じなので、このように include Debug としてあげれば OK です。
+        
+        ```ruby
+        # module
+        # - ミックスイン
+        
+        module Debug
+        
+          def info
+            puts "#{self.class} debug info ..."
+          end
+        
+        end
+        
+        class Player
+          include Debug # include はモジュール名を渡して、そのモジュールに書かれたメソッドをクラスから利用できるようにするメソッド
+        end
+        
+        class Monster
+          include Debug # include はモジュール名を渡して、そのモジュールに書かれたメソッドをクラスから利用できるようにするメソッド
+        end
+        ```
+        
+        そうすると Player も Monster も info というインスタンスメソッドを使えるようになるので、例えば [Player.new.info](http://player.new.info/) としてあげてもいいですし、[Monster.new.info](http://monster.new.info/) としてあげても OK です。
+        
+        ```ruby
+        # module
+        # - ミックスイン
+        
+        module Debug
+        
+          def info
+            puts "#{self.class} debug info ..."
+          end
+        
+        end
+        
+        class Player
+          include Debug
+        end
+        
+        class Monster
+          include Debug
+        end
+        
+        Player.new.info # Playerクラスからインスタンスを新規作成し、そのインスタンスに対してinfoメソッドを呼び出せ
+        Monster.new.info # Monsterクラスからインスタンスを新規作成し、そのインスタンスに対してinfoメソッドを呼び出せ
+        ```
+        
+        ```ruby
+        % ruby hello.rb
+        Player debug info ...
+        Monster debug info ...
+        ```
+        
+        ミックスインに関してはもっと複雑なこともできるのですが、継承関係にない複数のクラスに共通の機能を提供する場合に便利なので慣れておくといいかと思います。
