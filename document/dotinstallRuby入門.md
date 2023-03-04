@@ -2987,4 +2987,4 @@
     - モジュール
     - 名前空間の作り方</details>
 
-**<details><summary>#24 モジュールで名前空間を作ろう</summary>**
+**<details><summary>#25 ミックスインを使ってみよう</summary>**
