@@ -3135,4 +3135,4 @@
     - ミックスイン
     - 動作確認</details>
 
-**<details><summary>#01 Rubyを使ってみよう</summary>**
+**<details><summary>#26 例外を扱ってみよう</summary>**
