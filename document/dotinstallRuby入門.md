@@ -3136,3 +3136,142 @@
     - 動作確認</details>
 
 **<details><summary>#26 例外を扱ってみよう</summary>**
+- 例外処理について見ていきましょう
+    - これは何らかの処理をしていて予期しない結果が発生したときに、適切に処理していく方法になります。
+        
+        ではユーザーから入力を受け付けて「x = gets.to_i」「p 100 / x」のような処理をさせてみましょう。
+        
+        ```ruby
+        # 例外
+        
+        x = gets to_i
+        p 100 / x
+        ```
+        
+        ```ruby
+        % ruby hello.rb
+        0
+        hello.rb:4:in `/': divided by 0 (ZeroDivisionError)
+        	from hello.rb:4:in `<main>'
+        ```
+        
+        これは普通に使えるのですが、当然 0 を入れると 0 除算になるのでエラーで終了しています。
+        
+        ただここでこのような終了をさせずに、わかりやすいメッセージを出したり、自分なりの処理を追加したい場合に例外の仕組みが使えます。
+        
+        やり方なのですが…、例外が発生しそうな処理をまず `begin` と `end` で囲ってあげて、例外が発生した場合の処理を `rescue` の後に書いていってあげます。
+        
+        ここで `rescue => ex` のように書くと発生した例外を ex オブジェクトに入れてくれるので、例えば `p ex.message` とすることで、ex オブジェクトが持っているメッセージを表示することができます。
+        
+        ```ruby
+        # 例外
+        
+        x = gets.to_i
+        
+        begin
+          p 100 / x
+        rescue => ex # 発生した例外をexオブジェクトに入れてくれる
+          p ex.message
+        end
+        ```
+        
+        ```ruby
+        % ruby hello.rb
+        0
+        hello.rb:4:in `/': divided by 0 (ZeroDivisionError)
+        	from hello.rb:4:in `<main>'
+        ```
+        
+        今回の場合 0 除算なので、Ruby が用意している (エラー表記されている)`ZeroDivisionError` に引っかかるので、そちらのメッセージを表示してくれるはずです。
+        
+        もしくはこのオブジェクトのクラス名を知りたい場合には `p ex.class` のようにしてあげれば OK でしょう。
+        
+        当然自分で処理を追加することもできるので、「puts "stopped!"」のように書いてあげても OK です。
+        
+        それから例外が発生しようがしまいが、最後に絶対実行したい処理は `ensure` に続けて書いていくこともできるので覚えておいてください。
+        
+        では「`ensure`」「`puts "-- END --"`」としてあげます。
+        
+        ```ruby
+        # 例外
+        
+        x = gets.to_i
+        
+        begin
+          p 100 / x
+        rescue => ex
+          p ex.message
+          p ex.class
+          puts "stopped!"
+        ensure
+          puts "-- END --"
+        end
+        ```
+        
+        ```ruby
+        % ruby hello.rb
+        0
+        "divided by 0"
+        ZeroDivisionError
+        stopped!
+        -- END --
+        ```
+        
+        それから Ruby が用意している例外ではなくて、自分で例外クラスをつくってそれをキャッチすることもできます。
+        
+        では MyError としてあげて、Ruby の標準的な例外クラスである `StandardError` を継承してあげましょう。
+        
+        そして今回中身はいらないので、1 行で「`class MyError < StandardError; end`」と書いてしまいたいと思います。
+        
+        ```ruby
+        # 例外
+        
+        class MyError < StandardError; end
+        
+        x = gets.to_i
+        
+        begin
+          p 100 / x
+        rescue => ex
+          p ex.message
+          p ex.class
+          puts "stopped!"
+        ensure
+          puts "-- END --"
+        end
+        ```
+        
+        次にこの例外を発生させたいのですが、何らかの意図があって x が 3 のときに MyError を発生させたかった場合、`raise` (レイズ)という命令を使ってあげてください。`raise MyError` とすれば OK ですね。
+        
+        その後にこの MyError をキャッチするには rescue を増やしてあげればいいので、`rescue MyError` としてあげて、「`puts "not 3!"`」のように独自のメッセージを追加してあげてください。
+        
+        ```ruby
+        # 例外
+        
+        class MyError < StandardError; end
+        
+        x = gets.to_i
+        
+        begin
+          if x == 3
+            raise MyError
+          end
+          p 100 / x
+        rescue MyError
+          puts "not 3!"
+        rescue => ex
+          p ex.message
+          p ex.class
+          puts "stopped!"
+        ensure
+          puts "-- END --"
+        end
+        ```
+        
+        ```ruby
+        % ruby hello.rb
+        3
+        not 3!
+        ```
+        
+        例外処理はもっと奥が深かったりするのですが、まずはこの辺りをおさえるようにしてください。
